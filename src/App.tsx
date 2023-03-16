@@ -15,10 +15,11 @@ function App() {
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossOrigin=""></script>
 
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} style={{ height: "600px" }}>
+      {process.env.PUBLIC_URL}
+      <MapContainer center={[0, 0]} zoom={3} minZoom={3} scrollWheelZoom={false} style={{ height: "600px" }}>
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='https://github.com/Unicor-p/SCS_Map_Tiles'
+          url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
         />
         <Marker position={[51.505, -0.09]}>
           <Popup>
