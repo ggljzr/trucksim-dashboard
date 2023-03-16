@@ -1,0 +1,3 @@
+[submodule "public/SCS_Map_Tiles"]
+	path = public/SCS_Map_Tiles
+	url = https://github.com/Unicor-p/SCS_Map_Tiles
