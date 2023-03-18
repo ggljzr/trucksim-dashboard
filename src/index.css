@@ -22,7 +22,7 @@ body {
 }
 
 .Sidebar {
-  width: 4vw;
+  width: 65px;
   position: sticky;
   align-self: flex-start;
   align-items: start;
