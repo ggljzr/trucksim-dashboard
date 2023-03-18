@@ -1,6 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 
+import Sidebar from './Sidebar';
+
 interface Props {
     sidebar?: boolean,
     children?: React.ReactNode;
@@ -8,8 +10,12 @@ interface Props {
 
 export default function Body({ children }: Props) {
     return (
-        <Container fluid>
-            {children}
-        </Container>
+        <Stack direction='horizontal' className='Body'>
+            {<Sidebar />}
+            <Container fluid className='Content'>
+                {children}
+            </Container>
+        </Stack>
+
     );
 }
