@@ -13,14 +13,11 @@
 
 .Map {
   height: 95vh;
-  width: 96vw;
 }
 
 .Sidebar {
   width: 65px;
-  position: sticky;
-  align-self: flex-start;
-  align-items: start;
+  height: 95vh;
   background-color: #adb5bd;
 }
 
@@ -34,6 +31,7 @@
 .Sidebar .nav-item .active {
   color: #fff;
   background-color: #375a7f;
+  width: 75px;
 }
 
 .Sidebar a {
