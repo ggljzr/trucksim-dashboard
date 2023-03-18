@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import AdvisorPage from './pages/AdvisorPage';
+import MapPage from './pages/MapPage';
 import SettingsPage from './pages/SettingsPage';
 
 
@@ -20,7 +20,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Navigate to="/advisor" />} />
-          <Route path="/advisor" element={<AdvisorPage />} />
+          <Route path="/advisor" element={<MapPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
 
