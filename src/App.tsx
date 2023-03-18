@@ -21,11 +21,6 @@ function App() {
           attribution='https://github.com/Unicor-p/SCS_Map_Tiles'
           url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
         />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
       </MapContainer>
     </div>
   );
