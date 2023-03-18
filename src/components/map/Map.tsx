@@ -11,7 +11,7 @@ export default function Map() {
                 integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
                 crossOrigin=""></script>
 
-            <MapContainer center={[0, 0]} zoom={3} minZoom={3} scrollWheelZoom={false} style={{ height: "600px" }}>
+            <MapContainer center={[0, 0]} zoom={3} minZoom={3} scrollWheelZoom={false} className="Map">
                 <TileLayer
                     attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                     url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
