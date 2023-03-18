@@ -4,14 +4,13 @@ import Stack from 'react-bootstrap/Stack';
 import Sidebar from './Sidebar';
 
 interface Props {
-    sidebar?: boolean,
     children?: React.ReactNode;
 }
 
 export default function Body({ children }: Props) {
     return (
         <Stack direction='horizontal' className='Body'>
-            {<Sidebar />}
+            <Sidebar />
             <Container fluid className='Content'>
                 {children}
             </Container>
