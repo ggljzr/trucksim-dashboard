@@ -14,11 +14,13 @@ export default function JobPage({ job }: Props) {
     // render job as a list if it exists
     const jobContent = (
         <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+            <ListGroup.Item>{job?.destination_city}</ListGroup.Item>
+            <ListGroup.Item>{job?.destination_company}</ListGroup.Item>
+            <ListGroup.Item>{job?.delivery_time}</ListGroup.Item>
+            <ListGroup.Item>{job?.income}</ListGroup.Item>
+            <ListGroup.Item>{job?.cargo}</ListGroup.Item>
+            <ListGroup.Item>{job?.cargo} ({job?.cargo_mass} kg)</ListGroup.Item>
+            <ListGroup.Item>{job?.job_market}</ListGroup.Item>
         </ListGroup>
     )
 
