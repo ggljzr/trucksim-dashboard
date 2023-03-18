@@ -2,7 +2,7 @@ import Body from '../components/Body';
 
 export default function AdvisorPage() {
     return (
-        <Body sidebar>
+        <Body>
             Advisor
         </Body>
     );

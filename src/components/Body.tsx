@@ -6,10 +6,10 @@ interface Props {
     children?: React.ReactNode;
 }
 
-export default function Body({ sidebar = false, children }: Props) {
+export default function Body({ children }: Props) {
     return (
         <Container fluid>
-
+            {children}
         </Container>
     );
 }
