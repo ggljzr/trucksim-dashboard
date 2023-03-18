@@ -1,5 +1,7 @@
 .Content {
   padding: 0;
+  height: 100%;
+  margin: 20px;
 }
 
 .App {
@@ -13,6 +15,7 @@
 
 .Map {
   height: 95vh;
+  margin: -20px;
 }
 
 .Sidebar {
