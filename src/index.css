@@ -3,19 +3,11 @@ body {
   background: #000;
 }
 
-.Header {
-  border-bottom: 1px solid #ddd;
-}
-
-.Footer {
-  display: flex;
-  width: 60%;
-  justify-content: center;
-  margin: 0 auto;
+.Content {
+  padding: 0;
 }
 
 .Sidebar {
-  width: 120px;
   position: sticky;
   align-self: flex-start;
   align-items: start;
