@@ -7,12 +7,22 @@ body {
   padding: 0;
 }
 
-.Map {
-  height: 100vh;
+.App {
+  padding: 0;
+}
+
+.Header {
   width: 100vw;
+  height: 5vh;
+}
+
+.Map {
+  height: 95vh;
+  width: 96vw;
 }
 
 .Sidebar {
+  width: 4vw;
   position: sticky;
   align-self: flex-start;
   align-items: start;
