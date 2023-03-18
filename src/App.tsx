@@ -4,8 +4,10 @@ import Container from 'react-bootstrap/Container';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
+
 import MapPage from './pages/MapPage';
+import JobPage from './pages/JobPage';
+import TruckPage from './pages/TruckPage';
 import SettingsPage from './pages/SettingsPage';
 
 
@@ -19,12 +21,13 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path="/" element={<Navigate to="/advisor" />} />
-          <Route path="/advisor" element={<MapPage />} />
+          <Route path="/" element={<Navigate to="/map" />} />
+          <Route path="/map" element={<MapPage />} />
+          <Route path="/job" element={<JobPage />} />
+          <Route path="/truck" element={<TruckPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
 
-        <Footer />
       </BrowserRouter>
     </Container>
   );
