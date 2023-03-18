@@ -13,7 +13,7 @@ export default function Map() {
 
             <MapContainer center={[0, 0]} zoom={3} minZoom={3} scrollWheelZoom={false} style={{ height: "600px", width: "600px" }}>
                 <TileLayer
-                    attribution='https://github.com/Unicor-p/SCS_Map_Tiles'
+                    attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                     url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
                 />
             </MapContainer>
