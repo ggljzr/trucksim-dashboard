@@ -1,8 +1,3 @@
-body {
-  color: #fff;
-  background: #000;
-}
-
 .Content {
   padding: 0;
 }
@@ -26,6 +21,7 @@ body {
   position: sticky;
   align-self: flex-start;
   align-items: start;
+  background-color: #adb5bd;
 }
 
 .Sidebar .nav-link {
@@ -36,7 +32,8 @@ body {
 }
 
 .Sidebar .nav-item .active {
-  background-color: #eee;
+  color: #fff;
+  background-color: #375a7f;
 }
 
 .Sidebar a {
