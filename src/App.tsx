@@ -9,6 +9,7 @@ import Header from './components/Header';
 import MapPage from './pages/MapPage';
 import JobPage from './pages/JobPage';
 import TruckPage from './pages/TruckPage';
+import DriverPage from './pages/DriverPage';
 import SettingsPage from './pages/SettingsPage';
 
 import { Job } from './types';
@@ -50,6 +51,7 @@ function App() {
           <Route path="/map" element={<MapPage />} />
           <Route path="/job" element={<JobPage job={job} />} />
           <Route path="/truck" element={<TruckPage />} />
+          <Route path="/driver" element={<DriverPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
 
