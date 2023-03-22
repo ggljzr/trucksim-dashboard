@@ -6,7 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 export default function Header() {
     return (
-        <Navbar bg="light" sticky="top" className="Header">
+        <Navbar bg="light" className="Header">
             <ToastContainer
                 position="top-center"
                 autoClose={3000}
