@@ -8,7 +8,7 @@ export default function Sidebar() {
     const iconSize = 32;
 
     return (
-        <Navbar sticky="top" className="flex-column Sidebar">
+        <Navbar sticky="top" bg='light' className="flex-column Sidebar">
             <Nav.Item>
                 <Nav.Link as={NavLink} to="/map">
                     <Compass size={iconSize} />
