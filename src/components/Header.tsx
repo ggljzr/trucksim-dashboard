@@ -20,7 +20,7 @@ export default function Header({ mqttConnected }: Props) {
     return (
         <Navbar bg="light" className="Header">
             <ToastContainer
-                position="top-center"
+                position="top-right"
                 autoClose={3000}
                 hideProgressBar
                 newestOnTop={false}
@@ -29,6 +29,7 @@ export default function Header({ mqttConnected }: Props) {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
+                theme='dark'
             />
             <Container fluid>
                 <Navbar.Brand>Trucksim dashboard</Navbar.Brand>

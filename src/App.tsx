@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import mqtt from "mqtt/dist/mqtt";
 
+import { toast } from 'react-toastify';
+
 import Header from './components/Header';
 
 import MapPage from './pages/MapPage';
@@ -45,6 +47,10 @@ function App() {
     client.subscribe('trucksim/event/config/job');
     client.subscribe('trucksim/event/config/truck');
   }, []);
+
+  useEffect(() => {
+    if (mqttConnected) toast.success('Connected to MQTT broker');
+  }, [mqttConnected]);
 
   return (
     <Container fluid className="App">
