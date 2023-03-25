@@ -29,7 +29,7 @@ function App() {
   const [truck, setTruck] = useState<Truck | undefined>(undefined);
 
   useEffect(() => {
-    const client = mqtt.connect('ws://localhost:8080');
+    const client = mqtt.connect('ws://192.168.22.83:8080');
     client.on('connect', () => setMqttConnected(true));
 
     client.on('message', (topic, payload, packet) => {
