@@ -13,7 +13,7 @@ interface Props {
 export default function JobPage({ job }: Props) {
     const iconSize = 24;
     // render job as a list if it exists
-    const jobContent = (
+    const content = (
         <div>
             <h2>Current job</h2>
             <Table size='sm' bordered className='DashboardTable'>
@@ -56,7 +56,7 @@ export default function JobPage({ job }: Props) {
     return (
         <Body>
             <div>
-                {job == undefined ? <h1>No job selected</h1> : jobContent}
+                {job == undefined ? <h1>No job selected</h1> : content}
             </div>
         </Body>
     );
