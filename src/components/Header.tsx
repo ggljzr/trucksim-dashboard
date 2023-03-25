@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import { Wifi, WifiOff } from "react-bootstrap-icons";
 
 
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 interface Props {
     mqttConnected: boolean,
