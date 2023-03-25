@@ -12,7 +12,13 @@ interface Props {
 
 export default function JobPage({ job }: Props) {
     const iconSize = 24;
-    // render job as a list if it exists
+
+    var deliveryTime = "";
+    if (job) {
+        // delivery time as string
+        deliveryTime = new Date(job?.delivery_time).toLocaleString();
+    }
+
     const content = (
         <div>
             <h2>Current job</h2>
@@ -36,7 +42,7 @@ export default function JobPage({ job }: Props) {
                     <tr>
                         <td><StopwatchFill className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Delivery time</td>
-                        <td>{job?.delivery_time}</td>
+                        <td>{deliveryTime}</td>
                     </tr>
                     <tr>
                         <td><CurrencyExchange className='DashboardTableIcon' size={iconSize} /></td>
