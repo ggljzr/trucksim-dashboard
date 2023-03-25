@@ -30,6 +30,11 @@ export default function JobPage({ job }: Props) {
                     </tr>
                     <tr>
                         <td><StopwatchFill className='DashboardTableIcon' size={iconSize} /></td>
+                        <td className='DashboardTableHeader'>Planned distance</td>
+                        <td>{job?.planned_distance_km} km</td>
+                    </tr>
+                    <tr>
+                        <td><StopwatchFill className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Delivery time</td>
                         <td>{job?.delivery_time}</td>
                     </tr>
