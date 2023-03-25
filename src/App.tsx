@@ -83,6 +83,7 @@ const testTruck: Truck = {
 
 function App() {
   const [job, setJob] = useState<Job | undefined>(testJob);
+  const [truck, setTruck] = useState<Truck | undefined>(testTruck);
 
   return (
     <Container fluid className="App">
@@ -93,7 +94,7 @@ function App() {
           <Route path="/" element={<Navigate to="/map" />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/job" element={<JobPage job={job} />} />
-          <Route path="/truck" element={<TruckPage />} />
+          <Route path="/truck" element={<TruckPage truck={truck} />} />
           <Route path="/driver" element={<DriverPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
