@@ -1,10 +1,22 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import { Wifi, WifiOff } from "react-bootstrap-icons";
+
 
 import { toast, ToastContainer } from 'react-toastify';
 
-export default function Header() {
+interface Props {
+    mqttConnected: boolean,
+}
+
+
+export default function Header({ mqttConnected }: Props) {
+    const iconSize = 24;
+    const mqttConnectedIcon = mqttConnected ?
+        <Wifi color='green' size={iconSize} />
+        :
+        <WifiOff color='red' size={iconSize} />;
+
     return (
         <Navbar bg="light" className="Header">
             <ToastContainer
@@ -20,6 +32,7 @@ export default function Header() {
             />
             <Container fluid>
                 <Navbar.Brand>Trucksim dashboard</Navbar.Brand>
+                {mqttConnectedIcon}
             </Container>
         </Navbar>
     );

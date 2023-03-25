@@ -49,7 +49,7 @@ function App() {
   return (
     <Container fluid className="App">
       <BrowserRouter>
-        <Header />
+        <Header mqttConnected={mqttConnected} />
 
         <Routes>
           <Route path="/" element={<Navigate to="/map" />} />
