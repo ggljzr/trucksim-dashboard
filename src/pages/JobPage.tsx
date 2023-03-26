@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import { GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, BoxSeamFill, Globe } from "react-bootstrap-icons";
+import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, BoxSeamFill, Globe } from "react-bootstrap-icons";
 
 
 import Body from '../components/Body';
@@ -35,7 +35,7 @@ export default function JobPage({ job }: Props) {
                         <td>{job?.destination_company}</td>
                     </tr>
                     <tr>
-                        <td><StopwatchFill className='DashboardTableIcon' size={iconSize} /></td>
+                        <td><Bullseye className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Planned distance</td>
                         <td>{job?.planned_distance_km} km</td>
                     </tr>
