@@ -2,8 +2,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import { Wifi, WifiOff } from "react-bootstrap-icons";
 
-
 import { ToastContainer } from 'react-toastify';
+
+import { dateShortStr } from '../utils';
 
 interface Props {
     mqttConnected: boolean,
@@ -33,7 +34,7 @@ export default function Header({ mqttConnected, gameTime }: Props) {
                 theme='dark'
             />
             <Container fluid>
-                <Navbar.Brand>{gameTime.toLocaleTimeString("en", { timeZone: 'UTC', hour: "2-digit", minute: "2-digit" })}</Navbar.Brand>
+                <Navbar.Brand>{dateShortStr(gameTime)}</Navbar.Brand>
                 {mqttConnectedIcon}
             </Container>
         </Navbar>
