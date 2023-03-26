@@ -26,7 +26,7 @@ function App() {
 
   const [gameTime, setGameTime] = useState(minutesToDate(0));
   // next rest stop in minutes
-  const [nextRestStop, setNextRestStop] = useState<number | null>(null);
+  const [nextRestStop, setNextRestStop] = useState<number | null>(0);
 
   const [job, setJob] = useState<Job | null>(null);
   const [truck, setTruck] = useState<Truck | null>(null);
@@ -49,6 +49,10 @@ function App() {
           // we need to convert it to milliseconds
           const t = minutesToDate(decodePayload<Value>(payload).value);
           setGameTime(t);
+          break;
+        case 'trucksim/channel/rest/stop':
+          setNextRestStop(decodePayload<Value>(payload).value);
+          break;
       }
     });
 
@@ -56,6 +60,7 @@ function App() {
     client.subscribe('trucksim/event/config/truck');
 
     client.subscribe('trucksim/channel/game/time');
+    client.subscribe('trucksim/channel/rest/stop');
   }, []);
 
   useEffect(() => {
