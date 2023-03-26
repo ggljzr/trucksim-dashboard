@@ -18,7 +18,7 @@ import SettingsPage from './pages/SettingsPage';
 
 import { Job, Truck, Value } from './types';
 
-import { decodePayload } from './utils';
+import { decodePayload, minutesToDate } from './utils';
 
 import './App.css';
 
@@ -46,7 +46,7 @@ function App() {
         case 'trucksim/channel/game/time':
           // we recieved game time since the 00:00 of the first day in minutes
           // we need to convert it to milliseconds
-          const t = new Date(decodePayload<Value>(payload).value * 60 * 1000);
+          const t = minutesToDate(decodePayload<Value>(payload).value);
           setGameTime(t);
       }
     });
