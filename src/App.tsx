@@ -55,7 +55,7 @@ function App() {
         case 'trucksim/channel/rest/stop':
           setNextRestStop(decodePayload<Value>(payload).value);
           break;
-        case 'trucksim/channel/world/placement':
+        case 'trucksim/channel/truck/world/placement':
           setCurrentPlacement(decodePayload<DPlacement>(payload));
           break;
       }
@@ -66,6 +66,7 @@ function App() {
 
     client.subscribe('trucksim/channel/game/time');
     client.subscribe('trucksim/channel/rest/stop');
+    client.subscribe('trucksim/channel/truck/world/placement');
   }, []);
 
   useEffect(() => {

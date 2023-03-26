@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { LatLng, LatLngBounds } from 'leaflet';
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer, Circle } from 'react-leaflet'
 
 import { DPlacement } from '../types';
 import { dPlacementToLatLng } from '../utils';
@@ -20,6 +20,10 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
             setCenter(dPlacementToLatLng(currentPlacement));
         }
     }, [currentPlacement, followPosition]);
+
+    const truckMarker = currentPlacement === null ?
+        (<></>) :
+        (<Circle center={dPlacementToLatLng(currentPlacement)} radius={2500} />);
 
     return (
         <Body>
@@ -42,6 +46,7 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
                         attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                         url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
                     />
+                    {truckMarker}
                 </MapContainer>
             </div >
         </Body>
