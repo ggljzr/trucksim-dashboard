@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { LatLng, LatLngBounds } from 'leaflet';
 import { MapContainer, TileLayer } from 'react-leaflet'
 
@@ -7,15 +8,18 @@ import Body from '../components/Body';
 
 interface Props {
     currentPlacement: DPlacement | null,
+    followPosition?: boolean,
 }
 
-export default function MapPage({ currentPlacement }: Props) {
+export default function MapPage({ currentPlacement, followPosition }: Props) {
     const bounds = new LatLngBounds([-94.52288485802637, 176.98426154872845], [94.78431788146456, -187.69750005228602])
+    const [center, setCenter] = useState<LatLng>(new LatLng(0, 0));
 
-    var center = new LatLng(0, 0);
-    if (currentPlacement !== null) {
-        center = dPlacementToLatLng(currentPlacement);
-    }
+    useEffect(() => {
+        if (currentPlacement !== null && followPosition === true) {
+            setCenter(dPlacementToLatLng(currentPlacement));
+        }
+    }, [currentPlacement, followPosition]);
 
     return (
         <Body>
