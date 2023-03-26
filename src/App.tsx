@@ -26,7 +26,7 @@ function App() {
 
   const [gameTime, setGameTime] = useState(minutesToDate(0));
   // next rest stop in minutes
-  const [nextRestStop, setNextRestStop] = useState<number | null>(0);
+  const [nextRestStop, setNextRestStop] = useState<number | null>(null);
 
   const [job, setJob] = useState<Job | null>(null);
   const [truck, setTruck] = useState<Truck | null>(null);
@@ -66,6 +66,10 @@ function App() {
   useEffect(() => {
     if (mqttConnected) toast.success('Connected to MQTT broker');
   }, [mqttConnected]);
+
+  useEffect(() => {
+    if (nextRestStop && nextRestStop === 120) toast.warning('Next rest stop in 2 hours');
+  }, [nextRestStop]);
 
   return (
     <Container fluid className="App">
