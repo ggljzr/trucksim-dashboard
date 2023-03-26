@@ -1,15 +1,21 @@
-import { LatLngBounds } from 'leaflet';
+import { LatLng, LatLngBounds } from 'leaflet';
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 import { DPlacement } from '../types';
+import { dPlacementToLatLng } from '../utils';
 import Body from '../components/Body';
 
 interface Props {
-    worldPlacement: DPlacement | null,
+    currentPlacement: DPlacement | null,
 }
 
-export default function MapPage({ worldPlacement }: Props) {
+export default function MapPage({ currentPlacement }: Props) {
     const bounds = new LatLngBounds([-94.52288485802637, 176.98426154872845], [94.78431788146456, -187.69750005228602])
+
+    var center = new LatLng(0, 0);
+    if (currentPlacement !== null) {
+        center = dPlacementToLatLng(currentPlacement);
+    }
 
     return (
         <Body>
@@ -22,7 +28,12 @@ export default function MapPage({ worldPlacement }: Props) {
                     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
                     crossOrigin=""></script>
 
-                <MapContainer center={[0, 0]} zoom={3} minZoom={3} maxZoom={8} className="Map" maxBounds={bounds} zoomControl={false}>
+                <MapContainer
+                    center={center}
+                    zoom={3}
+                    minZoom={3} maxZoom={8}
+                    className="Map"
+                    maxBounds={bounds} zoomControl={false}>
                     <TileLayer
                         attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                         url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}

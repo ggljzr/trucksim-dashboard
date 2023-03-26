@@ -1,3 +1,6 @@
+import { LatLng } from "leaflet";
+import { DPlacement } from "./types";
+
 /**
  * Function for decoding MQTT message payloads.
  */
@@ -37,4 +40,11 @@ export function timedelatStr(minutes: number): string {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
+}
+
+/**
+ * Tranlates DPlacement from telemetry into LatLng.
+ */
+export function dPlacementToLatLng(dPlacement: DPlacement): LatLng {
+    return new LatLng(dPlacement.x, dPlacement.y);
 }
