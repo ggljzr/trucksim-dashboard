@@ -43,20 +43,13 @@ export function timedelatStr(minutes: number): string {
 }
 
 /**
- * Tranlates DPlacement from telemetry into LatLng.
- */
-export function dPlacementToLatLng(dPlacement: DPlacement): LatLng {
-    return new LatLng(dPlacement.x, dPlacement.y);
-}
-
-/**
  * Converts DPlacement from game telemetry to Leaflet Point. This point can then be projected to LatLng.
  * 
  * TileMapInfo.json is required for conversion. It should come with the tiles (see tiles folder in 'public').
  * 
  * See https://github.com/dariowouters/ts-map/issues/16 for more info.
  */
-function dplacementToPoint(xy: DPlacement): Point {
+export function dPlacementToPoint(xy: DPlacement): Point {
     // from ATS TileMapInfo.json, hardcoded for now
     const x1 = -127721.344;
     const x2 = 20049.6563;

@@ -3,29 +3,18 @@ import { LatLng, LatLngBounds, CRS } from 'leaflet';
 import { MapContainer, TileLayer, Circle } from 'react-leaflet'
 
 import { DPlacement } from '../types';
-import { dPlacementToLatLng } from '../utils';
+import PlayerMarker from '../components/map/PlayerMarker';
 import Body from '../components/Body';
 
-import LocationMarker from '../components/LocationMarker';
+import LocationMarker from '../components/map/LocationMarker';
 
 interface Props {
     currentPlacement: DPlacement | null,
-    followPosition?: boolean,
 }
 
-export default function MapPage({ currentPlacement, followPosition }: Props) {
+export default function MapPage({ currentPlacement }: Props) {
     const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884])
     const [center, setCenter] = useState<LatLng>(new LatLng(-128, 128));
-
-    useEffect(() => {
-        if (currentPlacement !== null && followPosition === true) {
-            setCenter(dPlacementToLatLng(currentPlacement));
-        }
-    }, [currentPlacement, followPosition]);
-
-    const truckMarker = currentPlacement === null ?
-        (<></>) :
-        (<Circle center={dPlacementToLatLng(currentPlacement)} radius={2500} />);
 
     return (
         <Body>
@@ -50,8 +39,7 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
                         attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                         url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
                     />
-                    {truckMarker}
-                    <LocationMarker />
+                    <PlayerMarker currentPlacement={currentPlacement} />
                 </MapContainer>
             </div >
         </Body>
