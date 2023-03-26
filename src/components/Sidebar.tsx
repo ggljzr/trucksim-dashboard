@@ -2,7 +2,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from 'react-router-dom';
 
-import { Compass, Sliders, Truck, Journal, Person } from "react-bootstrap-icons";
+import { Compass, Sliders, Truck, Journal } from "react-bootstrap-icons";
 
 export default function Sidebar() {
     const iconSize = 32;
@@ -22,11 +22,6 @@ export default function Sidebar() {
             <Nav.Item>
                 <Nav.Link as={NavLink} to="/truck" >
                     <Truck size={iconSize} />
-                </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link as={NavLink} to="/driver" >
-                    <Person size={iconSize} />
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
