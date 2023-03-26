@@ -21,9 +21,6 @@ import { decodePayload, minutesToDate } from './utils';
 
 import './App.css';
 
-// austin repair shop
-const testPlacement: DPlacement = { x: -8771.726577758789, y: 8.502845764160156, z: 50302.0234375, heading: 0, pitch: 0, roll: 0 }
-
 function App() {
   const [mqttConnected, setMqttConnected] = useState(false);
 
@@ -34,7 +31,7 @@ function App() {
   const [job, setJob] = useState<Job | null>(null);
   const [truck, setTruck] = useState<Truck | null>(null);
 
-  const [currentPlacement, setCurrentPlacement] = useState<DPlacement | null>(testPlacement);
+  const [currentPlacement, setCurrentPlacement] = useState<DPlacement | null>(null);
 
   useEffect(() => {
     console.log(process.env.REACT_APP_MQTT_BROKER_URL);
