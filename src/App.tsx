@@ -25,7 +25,7 @@ import './App.css';
 function App() {
   const [mqttConnected, setMqttConnected] = useState(false);
 
-  const [gameTime, setGameTime] = useState(new Date(0));
+  const [gameTime, setGameTime] = useState(minutesToDate(0));
 
   const [job, setJob] = useState<Job | undefined>(undefined);
   const [truck, setTruck] = useState<Truck | undefined>(undefined);

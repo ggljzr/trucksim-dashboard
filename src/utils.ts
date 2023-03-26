@@ -6,8 +6,20 @@ export function decodePayload<T>(payload: Buffer): T {
     return JSON.parse(decoder.decode(payload)) as T;
 }
 
+/**
+ * Function for recalculating minutes since the first game day into date object.
+ * Minutes since the first game day are used in telemetry data. These minutes
+ * can be converted into milliseconds and interpreted as a unix epoch.
+ * 
+ * Since unix epoch starts on thursday, but first game day is monday, this
+ * function also adds 4 days to the epoch. This is to get the correct weekday,
+ * we don't care about correct month or year.
+ */
 export function minutesToDate(minutes: number): Date {
-    return new Date(minutes * 60 * 1000);
+    // unix epoch is thursday but the game starts on monday
+    // so we need to offset the epoch by 4 days
+    const epochOffset = 24 * 60 * 60 * 1000 * 4;
+    return new Date(minutes * 60 * 1000 + epochOffset);
 }
 
 /**
