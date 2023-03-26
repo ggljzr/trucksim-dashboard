@@ -87,7 +87,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Navigate to="/map" />} />
-          <Route path="/map" element={<MapPage currentPlacement={currentPlacement} />} />
+          <Route path="/map" element={<MapPage currentPlacement={currentPlacement} followPosition />} />
           <Route path="/job" element={<JobPage job={job} nextRestStop={nextRestStop} />} />
           <Route path="/truck" element={<TruckPage truck={truck} />} />
           <Route path="/settings" element={<SettingsPage />} />

@@ -10,9 +10,10 @@ import LocationMarker from '../components/map/LocationMarker';
 
 interface Props {
     currentPlacement: DPlacement | null,
+    followPosition?: boolean,
 }
 
-export default function MapPage({ currentPlacement }: Props) {
+export default function MapPage({ currentPlacement, followPosition }: Props) {
     const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884])
     const [center, setCenter] = useState<LatLng>(new LatLng(-128, 128));
 
@@ -39,7 +40,7 @@ export default function MapPage({ currentPlacement }: Props) {
                         attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                         url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
                     />
-                    <PlayerMarker currentPlacement={currentPlacement} />
+                    <PlayerMarker currentPlacement={currentPlacement} autoCenter={followPosition} />
                 </MapContainer>
             </div >
         </Body>
