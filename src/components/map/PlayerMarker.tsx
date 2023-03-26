@@ -16,10 +16,8 @@ export default function PlayerMarker({ currentPlacement }: Props) {
     const position = (currentPlacement === null) ? null : map.unproject(dPlacementToPoint(currentPlacement), map.getMaxZoom());
 
     const icon = new Icon({
-        iconUrl: 'logo192.png',
-
-        iconSize: [20, 20], // size of the icon
-        rotationAngle: 10,
+        iconUrl: 'player.png',
+        iconSize: [50, 50], // size of the icon
     })
 
     return position === null ? null : (
