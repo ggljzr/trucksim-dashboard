@@ -7,7 +7,7 @@ import Body from '../components/Body';
 import { Truck } from '../types';
 
 interface Props {
-    truck?: Truck,
+    truck: Truck | null,
 }
 
 export default function TruckPage({ truck }: Props) {
@@ -36,7 +36,7 @@ export default function TruckPage({ truck }: Props) {
     return (
         <Body>
             <div>
-                {truck === undefined ? <h1>No truck configured</h1> : content}
+                {truck === null ? <h1>No truck configured</h1> : content}
             </div>
         </Body>
     );

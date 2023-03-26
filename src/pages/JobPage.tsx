@@ -7,21 +7,21 @@ import { minutesToDate, dateShortStr, timedelatStr } from '../utils';
 import { Job } from '../types';
 
 interface Props {
-    job?: Job,
+    job: Job | null,
     // time to next rest stop in minutes
-    nextRestStop?: number,
+    nextRestStop: number | null,
 }
 
 export default function JobPage({ job, nextRestStop }: Props) {
     const iconSize = 24;
 
     var deliveryTimeStr = "";
-    if (job !== undefined) {
+    if (job !== null) {
         deliveryTimeStr = dateShortStr(minutesToDate(job.delivery_time));
     }
 
     var nextRestStopStr = "";
-    if (nextRestStop !== undefined) {
+    if (nextRestStop !== null) {
         nextRestStopStr = timedelatStr(nextRestStop);
     }
 
@@ -73,8 +73,8 @@ export default function JobPage({ job, nextRestStop }: Props) {
     return (
         <Body>
             <div>
-                {job === undefined ? <h1>No job selected</h1> : content}
-                {nextRestStop === undefined ? "" : <div>Next rest stop in: {nextRestStopStr}</div>}
+                {job === null ? <h1>No job selected</h1> : content}
+                {nextRestStop === null ? "" : <div>Next rest stop in: {nextRestStopStr}</div>}
             </div>
         </Body>
     );

@@ -26,10 +26,10 @@ function App() {
 
   const [gameTime, setGameTime] = useState(minutesToDate(0));
   // next rest stop in minutes
-  const [nextRestStop, setNextRestStop] = useState(undefined);
+  const [nextRestStop, setNextRestStop] = useState<number | null>(null);
 
-  const [job, setJob] = useState<Job | undefined>(undefined);
-  const [truck, setTruck] = useState<Truck | undefined>(undefined);
+  const [job, setJob] = useState<Job | null>(null);
+  const [truck, setTruck] = useState<Truck | null>(null);
 
   useEffect(() => {
     console.log(process.env.REACT_APP_MQTT_BROKER_URL);
