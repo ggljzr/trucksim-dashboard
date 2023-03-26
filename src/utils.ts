@@ -1,4 +1,4 @@
-import { LatLng } from "leaflet";
+import { LatLng, Point } from "leaflet";
 import { DPlacement } from "./types";
 
 /**
@@ -47,4 +47,33 @@ export function timedelatStr(minutes: number): string {
  */
 export function dPlacementToLatLng(dPlacement: DPlacement): LatLng {
     return new LatLng(dPlacement.x, dPlacement.y);
+}
+
+/**
+ * Converts DPlacement from game telemetry to Leaflet Point. This point can then be projected to LatLng.
+ * 
+ * TileMapInfo.json is required for conversion. It should come with the tiles (see tiles folder in 'public').
+ * 
+ * See https://github.com/dariowouters/ts-map/issues/16 for more info.
+ */
+function dplacementToPoint(xy: DPlacement): Point {
+    // from ATS TileMapInfo.json, hardcoded for now
+    const x1 = -127721.344;
+    const x2 = 20049.6563;
+    const y1 = -72181.5;
+    const y2 = 75589.5;
+
+    // these values work, at least for ATS, but not sure why
+    // they were found experimentally
+    const maxX = 65536;
+    const maxY = 65536;
+
+    const xtot = x2 - x1; // Total X length
+    const ytot = y2 - y1; // Total Y length
+
+    const xrel = (xy.x - x1) / xtot; // The fraction where the X is (between 0 and 1, 0 being fully left, 1 being fully right)
+    // Note that DPlacement uses Z for Y, and Y for Z, so Y is altitude.
+    const yrel = (xy.z - y1) / ytot; // The fraction where the Y is
+
+    return new Point(xrel * maxX, yrel * maxY);
 }
