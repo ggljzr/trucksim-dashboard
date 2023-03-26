@@ -1,9 +1,14 @@
 import { LatLngBounds } from 'leaflet';
 import { MapContainer, TileLayer } from 'react-leaflet'
 
+import { DPlacement } from '../types';
 import Body from '../components/Body';
 
-export default function MapPage() {
+interface Props {
+    worldPlacement: DPlacement | null,
+}
+
+export default function MapPage({ worldPlacement }: Props) {
     const bounds = new LatLngBounds([-94.52288485802637, 176.98426154872845], [94.78431788146456, -187.69750005228602])
 
     return (
