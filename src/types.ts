@@ -1,3 +1,14 @@
+/**
+ * @file Types for the SCS SDK
+ */
+
+/**
+ * Generic value type, used in most channels.
+ */
+export interface Value {
+    value: number,
+}
+
 export interface Position {
     x: number,
     y: number,

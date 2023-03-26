@@ -16,7 +16,7 @@ import TruckPage from './pages/TruckPage';
 import DriverPage from './pages/DriverPage';
 import SettingsPage from './pages/SettingsPage';
 
-import { Job, Truck } from './types';
+import { Job, Truck, Value } from './types';
 
 import { decodePayload } from './utils';
 
@@ -24,6 +24,8 @@ import './App.css';
 
 function App() {
   const [mqttConnected, setMqttConnected] = useState(false);
+
+  const [gameTime, setGameTime] = useState(new Date(0));
 
   const [job, setJob] = useState<Job | undefined>(undefined);
   const [truck, setTruck] = useState<Truck | undefined>(undefined);
@@ -34,19 +36,25 @@ function App() {
     client.on('connect', () => setMqttConnected(true));
 
     client.on('message', (topic, payload, packet) => {
-      if (topic === 'trucksim/event/config/job') {
-        setJob(decodePayload<Job>(payload));
-        return;
-      }
-
-      if (topic === 'trucksim/event/config/truck') {
-        setTruck(decodePayload<Truck>(payload));
-        return;
+      switch (topic) {
+        case 'trucksim/event/config/job':
+          setJob(decodePayload<Job>(payload));
+          break;
+        case 'trucksim/event/config/truck':
+          setTruck(decodePayload<Truck>(payload));
+          break;
+        case 'trucksim/channel/game/time':
+          // we recieved game time since the 00:00 of the first day in minutes
+          // we need to convert it to milliseconds
+          const t = new Date(decodePayload<Value>(payload).value * 60 * 1000);
+          setGameTime(t);
       }
     });
 
     client.subscribe('trucksim/event/config/job');
     client.subscribe('trucksim/event/config/truck');
+
+    client.subscribe('trucksim/channel/game/time');
   }, []);
 
   useEffect(() => {
@@ -56,7 +64,7 @@ function App() {
   return (
     <Container fluid className="App">
       <BrowserRouter>
-        <Header mqttConnected={mqttConnected} />
+        <Header mqttConnected={mqttConnected} gameTime={gameTime} />
 
         <Routes>
           <Route path="/" element={<Navigate to="/map" />} />

@@ -7,10 +7,11 @@ import { ToastContainer } from 'react-toastify';
 
 interface Props {
     mqttConnected: boolean,
+    gameTime: Date,
 }
 
 
-export default function Header({ mqttConnected }: Props) {
+export default function Header({ mqttConnected, gameTime }: Props) {
     const iconSize = 24;
     const mqttConnectedIcon = mqttConnected ?
         <Wifi color='green' size={iconSize} />
@@ -32,7 +33,7 @@ export default function Header({ mqttConnected }: Props) {
                 theme='dark'
             />
             <Container fluid>
-                <Navbar.Brand>Trucksim dashboard</Navbar.Brand>
+                <Navbar.Brand>{gameTime.toLocaleTimeString("en", { timeZone: 'UTC', hour: "2-digit", minute: "2-digit" })}</Navbar.Brand>
                 {mqttConnectedIcon}
             </Container>
         </Navbar>
