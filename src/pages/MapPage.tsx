@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { LatLng, LatLngBounds, CRS } from 'leaflet';
-import { MapContainer, TileLayer, Circle } from 'react-leaflet'
+import { MapContainer, TileLayer } from 'react-leaflet'
 
 import { DPlacement } from '../types';
 import PlayerMarker from '../components/map/PlayerMarker';
 import Body from '../components/Body';
-
-import LocationMarker from '../components/map/LocationMarker';
 
 interface Props {
     currentPlacement: DPlacement | null,
