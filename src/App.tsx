@@ -29,7 +29,8 @@ function App() {
   const [truck, setTruck] = useState<Truck | undefined>(undefined);
 
   useEffect(() => {
-    const client = mqtt.connect('ws://192.168.22.83:8080');
+    console.log(process.env.REACT_APP_MQTT_BROKER_URL);
+    const client = mqtt.connect(process.env.REACT_APP_MQTT_BROKER_URL as string);
     client.on('connect', () => setMqttConnected(true));
 
     client.on('message', (topic, payload, packet) => {
