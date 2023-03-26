@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import { LatLng, LatLngBounds } from 'leaflet';
+import { LatLng, LatLngBounds, CRS } from 'leaflet';
 import { MapContainer, TileLayer, Circle } from 'react-leaflet'
 
 import { DPlacement } from '../types';
 import { dPlacementToLatLng } from '../utils';
 import Body from '../components/Body';
+
+import LocationMarker from '../components/LocationMarker';
 
 interface Props {
     currentPlacement: DPlacement | null,
@@ -12,8 +14,8 @@ interface Props {
 }
 
 export default function MapPage({ currentPlacement, followPosition }: Props) {
-    const bounds = new LatLngBounds([-94.52288485802637, 176.98426154872845], [94.78431788146456, -187.69750005228602])
-    const [center, setCenter] = useState<LatLng>(new LatLng(0, 0));
+    const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884])
+    const [center, setCenter] = useState<LatLng>(new LatLng(-128, 128));
 
     useEffect(() => {
         if (currentPlacement !== null && followPosition === true) {
@@ -37,16 +39,19 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
                     crossOrigin=""></script>
 
                 <MapContainer
+                    crs={CRS.Simple}
                     center={center}
                     zoom={3}
                     minZoom={3} maxZoom={8}
                     className="Map"
-                    maxBounds={bounds} zoomControl={false}>
+                    maxBounds={bounds}
+                    zoomControl={false}>
                     <TileLayer
                         attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                         url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
                     />
                     {truckMarker}
+                    <LocationMarker />
                 </MapContainer>
             </div >
         </Body>
