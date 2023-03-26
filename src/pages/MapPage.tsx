@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { LatLng, LatLngBounds, CRS } from 'leaflet';
 import { MapContainer, TileLayer } from 'react-leaflet'
 
@@ -13,7 +12,6 @@ interface Props {
 
 export default function MapPage({ currentPlacement, followPosition }: Props) {
     const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884])
-    const [center, setCenter] = useState<LatLng>(new LatLng(-128, 128));
 
     return (
         <Body>
@@ -28,7 +26,7 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
 
                 <MapContainer
                     crs={CRS.Simple}
-                    center={center}
+                    center={new LatLng(-128, 128)}
                     zoom={3}
                     minZoom={3} maxZoom={8}
                     className="Map"
