@@ -3,7 +3,7 @@ import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, Bo
 
 
 import Body from '../components/Body';
-
+import { minutesToDate, dateShortStr } from '../utils';
 import { Job } from '../types';
 
 interface Props {
@@ -15,8 +15,7 @@ export default function JobPage({ job }: Props) {
 
     var deliveryTime = "";
     if (job) {
-        // delivery time as string
-        deliveryTime = new Date(job?.delivery_time).toLocaleString();
+        deliveryTime = dateShortStr(minutesToDate(job.delivery_time));
     }
 
     const content = (
