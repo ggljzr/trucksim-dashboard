@@ -25,6 +25,8 @@ function App() {
   const [mqttConnected, setMqttConnected] = useState(false);
 
   const [gameTime, setGameTime] = useState(minutesToDate(0));
+  // next rest stop in minutes
+  const [nextRestStop, setNextRestStop] = useState(undefined);
 
   const [job, setJob] = useState<Job | undefined>(undefined);
   const [truck, setTruck] = useState<Truck | undefined>(undefined);
@@ -68,7 +70,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/map" />} />
           <Route path="/map" element={<MapPage />} />
-          <Route path="/job" element={<JobPage job={job} />} />
+          <Route path="/job" element={<JobPage job={job} nextRestStop={nextRestStop} />} />
           <Route path="/truck" element={<TruckPage truck={truck} />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>

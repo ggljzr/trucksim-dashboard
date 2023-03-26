@@ -36,7 +36,7 @@ export default function TruckPage({ truck }: Props) {
     return (
         <Body>
             <div>
-                {truck == undefined ? <h1>No truck configured</h1> : content}
+                {truck === undefined ? <h1>No truck configured</h1> : content}
             </div>
         </Body>
     );

@@ -3,19 +3,26 @@ import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, Bo
 
 
 import Body from '../components/Body';
-import { minutesToDate, dateShortStr } from '../utils';
+import { minutesToDate, dateShortStr, timedelatStr } from '../utils';
 import { Job } from '../types';
 
 interface Props {
     job?: Job,
+    // time to next rest stop in minutes
+    nextRestStop?: number,
 }
 
-export default function JobPage({ job }: Props) {
+export default function JobPage({ job, nextRestStop }: Props) {
     const iconSize = 24;
 
-    var deliveryTime = "";
-    if (job) {
-        deliveryTime = dateShortStr(minutesToDate(job.delivery_time));
+    var deliveryTimeStr = "";
+    if (job !== undefined) {
+        deliveryTimeStr = dateShortStr(minutesToDate(job.delivery_time));
+    }
+
+    var nextRestStopStr = "";
+    if (nextRestStop !== undefined) {
+        nextRestStopStr = timedelatStr(nextRestStop);
     }
 
     const content = (
@@ -41,7 +48,7 @@ export default function JobPage({ job }: Props) {
                     <tr>
                         <td><StopwatchFill className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Delivery time</td>
-                        <td>{deliveryTime}</td>
+                        <td>{deliveryTimeStr}</td>
                     </tr>
                     <tr>
                         <td><CurrencyExchange className='DashboardTableIcon' size={iconSize} /></td>
@@ -66,7 +73,8 @@ export default function JobPage({ job }: Props) {
     return (
         <Body>
             <div>
-                {job == undefined ? <h1>No job selected</h1> : content}
+                {job === undefined ? <h1>No job selected</h1> : content}
+                {nextRestStop === undefined ? "" : <div>Next rest stop in: {nextRestStopStr}</div>}
             </div>
         </Body>
     );

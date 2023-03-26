@@ -29,3 +29,12 @@ export function minutesToDate(minutes: number): Date {
 export function dateShortStr(date: Date): string {
     return date.toLocaleTimeString("en", { timeZone: 'UTC', hour: "2-digit", minute: "2-digit", weekday: "short" })
 }
+
+/**
+ * Function converts time delta (in minutes) into "HH:MM" string.
+ */
+export function timedelatStr(minutes: number): string {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}`;
+}
