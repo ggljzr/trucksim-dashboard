@@ -9,6 +9,15 @@ export interface Value {
     value: number,
 }
 
+export interface DPlacement {
+    x: number,
+    y: number,
+    z: number,
+    heading: number,
+    pitch: number,
+    roll: number,
+}
+
 export interface Position {
     x: number,
     y: number,

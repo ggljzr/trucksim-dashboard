@@ -15,7 +15,7 @@ import JobPage from './pages/JobPage';
 import TruckPage from './pages/TruckPage';
 import SettingsPage from './pages/SettingsPage';
 
-import { Job, Truck, Value } from './types';
+import { Job, Truck, Value, DPlacement } from './types';
 
 import { decodePayload, minutesToDate } from './utils';
 
@@ -30,6 +30,8 @@ function App() {
 
   const [job, setJob] = useState<Job | null>(null);
   const [truck, setTruck] = useState<Truck | null>(null);
+
+  const [worldPlacement, setWorldPlacement] = useState<DPlacement | null>(null);
 
   useEffect(() => {
     console.log(process.env.REACT_APP_MQTT_BROKER_URL);
@@ -52,6 +54,9 @@ function App() {
           break;
         case 'trucksim/channel/rest/stop':
           setNextRestStop(decodePayload<Value>(payload).value);
+          break;
+        case 'trucksim/channel/world/placement':
+          setWorldPlacement(decodePayload<DPlacement>(payload));
           break;
       }
     });
