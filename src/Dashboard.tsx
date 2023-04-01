@@ -6,11 +6,10 @@ import mqtt from "mqtt/dist/mqtt";
 
 import { toast } from 'react-toastify';
 
-import Spinner from 'react-bootstrap/Spinner';
-
 import { useGameInfo } from './contexts/GameInfoProvider';
 
 import Header from './components/Header';
+import Loading from './components/Loading';
 
 import MapPage from './pages/MapPage';
 import JobPage from './pages/JobPage';
@@ -89,10 +88,7 @@ export default function Dashboard() {
     return (
         // wait for game string before displaying dashboard
         (game === null) ?
-            <div>
-                <h1>Loading...</h1>
-                <Spinner animation="border" />
-            </div>
+            <Loading mqttConnected={mqttConnected} />
             :
             <BrowserRouter>
                 <Header mqttConnected={mqttConnected} gameTime={gameTime} />
