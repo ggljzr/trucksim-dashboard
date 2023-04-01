@@ -2,6 +2,11 @@
  * @file Types for the SCS SDK
  */
 
+export interface GameInfo {
+    game_id: string, // "ats" or "eut2"
+    game_version: number,
+}
+
 /**
  * Generic value type, used in most channels.
  */

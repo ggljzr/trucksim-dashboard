@@ -25,7 +25,7 @@ import { decodePayload, minutesToDate } from './utils';
  * Main dashboard component, containing MQTT client and dashboard pages.
  * 
  * Main purpose for this component is that it can work inside the GameInfoProvider context,
- * initialized in App.tsx. This context is necessary to set correct game string (e. g. 'ats' or 'ets').
+ * initialized in App.tsx. This context is necessary to set correct game string (e. g. 'ats' or 'eut2').
  */
 export default function Dashboard() {
     const { game, setGame } = useGameInfo();
