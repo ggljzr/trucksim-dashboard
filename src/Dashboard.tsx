@@ -6,6 +6,8 @@ import mqtt from "mqtt/dist/mqtt";
 
 import { toast } from 'react-toastify';
 
+import { useGameInfo } from './contexts/GameInfoProvider';
+
 import Header from './components/Header';
 
 import MapPage from './pages/MapPage';
@@ -24,6 +26,8 @@ import { decodePayload, minutesToDate } from './utils';
  * initialized in App.tsx. This context is necessary to set correct game string (e. g. 'ats' or 'ets').
  */
 export default function Dashboard() {
+    const { game, setGame } = useGameInfo();
+
     const [mqttConnected, setMqttConnected] = useState(false);
 
     const [gameTime, setGameTime] = useState(minutesToDate(0));
@@ -73,6 +77,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (mqttConnected) toast.success('Connected to MQTT broker');
+        setGame('ats');
     }, [mqttConnected]);
 
     useEffect(() => {
