@@ -82,10 +82,6 @@ export default function Dashboard() {
     }, []);
 
     useEffect(() => {
-        if (mqttConnected) toast.success('Connected to MQTT broker');
-    }, [mqttConnected]);
-
-    useEffect(() => {
         if (nextRestStop && nextRestStop === 120) toast.warning('Next rest stop in 2 hours');
     }, [nextRestStop]);
 
