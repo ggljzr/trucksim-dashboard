@@ -16,7 +16,7 @@ import JobPage from './pages/JobPage';
 import TruckPage from './pages/TruckPage';
 import SettingsPage from './pages/SettingsPage';
 
-import { Job, Truck, Value, DPlacement } from './types';
+import { Job, Truck, Value, DPlacement, GameInfo } from './types';
 
 import { decodePayload, minutesToDate } from './utils';
 
@@ -27,7 +27,7 @@ import { decodePayload, minutesToDate } from './utils';
  * initialized in App.tsx. This context is necessary to set correct game string (e. g. 'ats' or 'eut2').
  */
 export default function Dashboard() {
-    const { game, setGame } = useGameInfo();
+    const { gameInfo, setGameInfo } = useGameInfo();
 
     const [mqttConnected, setMqttConnected] = useState(false);
 
@@ -47,6 +47,9 @@ export default function Dashboard() {
 
         client.on('message', (topic, payload, packet) => {
             switch (topic) {
+                case "trucksim/gameinfo":
+                    setGameInfo(decodePayload<GameInfo | null>(payload));
+                    break;
                 case 'trucksim/event/config/job':
                     setJob(decodePayload<Job>(payload));
                     break;
@@ -68,6 +71,8 @@ export default function Dashboard() {
             }
         });
 
+        client.subscribe('trucksim/gameinfo');
+
         client.subscribe('trucksim/event/config/job');
         client.subscribe('trucksim/event/config/truck');
 
@@ -78,7 +83,6 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (mqttConnected) toast.success('Connected to MQTT broker');
-        // setGame('ats');
     }, [mqttConnected]);
 
     useEffect(() => {
@@ -87,7 +91,7 @@ export default function Dashboard() {
 
     return (
         // wait for game string before displaying dashboard
-        (game === null) ?
+        (gameInfo === null) ?
             <Loading mqttConnected={mqttConnected} />
             :
             <BrowserRouter>

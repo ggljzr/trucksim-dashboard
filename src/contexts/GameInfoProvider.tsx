@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+import { GameInfo } from '../types';
+
 interface IGameInfoContext {
-    game: string | null,
-    setGame: React.Dispatch<React.SetStateAction<string | null>>
+    gameInfo: GameInfo | null,
+    setGameInfo: React.Dispatch<React.SetStateAction<GameInfo | null>>
 }
 
 const GameInfoContext = createContext<IGameInfoContext | undefined>(undefined);
@@ -15,10 +17,10 @@ interface Props {
  * Context provider for game info e. g. game string ('ats' or 'eut2') or game version.
  */
 export default function GameInfoProvider({ children }: Props) {
-    const [game, setGame] = useState<string | null>(null);
+    const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);
 
     return (
-        <GameInfoContext.Provider value={{ game, setGame }}>
+        <GameInfoContext.Provider value={{ gameInfo, setGameInfo }}>
             {children}
         </GameInfoContext.Provider>
     );
