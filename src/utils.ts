@@ -36,7 +36,7 @@ export function dateShortStr(date: Date): string {
 /**
  * Function converts time delta (in minutes) into "xxh yym" string.
  */
-export function timedelatStr(minutes: number): string {
+export function timeDeltaStr(minutes: number): string {
     const hours = (Math.floor(minutes / 60)).toFixed(0);
     const mins = (minutes % 60).toFixed(0);
     return `${hours.toString().padStart(2, "0")}h ${mins.toString().padStart(2, "0")}m`;

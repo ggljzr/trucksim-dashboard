@@ -3,7 +3,7 @@ import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, Bo
 
 
 import Body from '../components/Body';
-import { minutesToDate, dateShortStr, timedelatStr } from '../utils';
+import { minutesToDate, dateShortStr, timeDeltaStr } from '../utils';
 import { Job } from '../types';
 
 import { useGameInfo } from '../contexts/GameInfoProvider';
@@ -26,7 +26,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
 
     var nextRestStopStr = "";
     if (nextRestStop !== null) {
-        nextRestStopStr = timedelatStr(nextRestStop);
+        nextRestStopStr = timeDeltaStr(nextRestStop);
     }
 
     const content = (

@@ -4,7 +4,7 @@ import { Wifi, WifiOff, GeoAlt, Stopwatch } from "react-bootstrap-icons";
 
 import { ToastContainer } from 'react-toastify';
 
-import { dateShortStr, timedelatStr } from '../utils';
+import { dateShortStr, timeDeltaStr } from '../utils';
 
 interface Props {
     mqttConnected: boolean,
@@ -39,7 +39,7 @@ export default function Header({ mqttConnected, gameTime, navigationTime, naviga
             />
             <Container fluid>
                 <Navbar.Text>{dateShortStr(gameTime)}</Navbar.Text>
-                {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {timedelatStr(navigationTime)}</Navbar.Text>}
+                {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {timeDeltaStr(navigationTime)}</Navbar.Text>}
                 {(navigationDistance === null) ? <></> : <Navbar.Text><GeoAlt /> {navigationDistance.toFixed(0).toString() + ' km'}</Navbar.Text>}
                 <Navbar.Text>{mqttConnectedIcon}</Navbar.Text>
             </Container>
