@@ -35,6 +35,10 @@ export default function Dashboard() {
     // next rest stop in minutes
     const [nextRestStop, setNextRestStop] = useState<number | null>(null);
 
+    // ETA in minutes
+    const [navigationTime, setNavigationTime] = useState<number | null>(null);
+    const [navigationDistance, setNavigationDistance] = useState<number | null>(null);
+
     const [job, setJob] = useState<Job | null>(null);
     const [truck, setTruck] = useState<Truck | null>(null);
 
@@ -68,6 +72,13 @@ export default function Dashboard() {
                 case 'trucksim/channel/truck/world/placement':
                     setCurrentPlacement(decodePayload<DPlacement>(payload));
                     break;
+                case 'trucksim/channel/truck/navigation/time':
+                    // trucksim/channel/truck/navigation/time is in seconds, we want minutes for consistency
+                    setNavigationTime(decodePayload<Value>(payload).value / 60);
+                    break;
+                case 'trucksim/channel/truck/navigation/distance':
+                    setNavigationDistance(decodePayload<Value>(payload).value);
+                    break;
             }
         });
 
@@ -78,7 +89,10 @@ export default function Dashboard() {
 
         client.subscribe('trucksim/channel/game/time');
         client.subscribe('trucksim/channel/rest/stop');
+
         client.subscribe('trucksim/channel/truck/world/placement');
+        client.subscribe('trucksim/channel/truck/navigation/time');
+        client.subscribe('trucksim/channel/truck/navigation/distance');
     }, []);
 
     useEffect(() => {
