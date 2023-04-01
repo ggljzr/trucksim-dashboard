@@ -101,6 +101,18 @@ export default function Dashboard() {
         if (nextRestStop && nextRestStop === 120) toast.warning('Next rest stop in 2 hours');
     }, [nextRestStop]);
 
+    useEffect(() => {
+        if (job !== null) {
+            toast.info(`New job: ${job.source_city} - ${job.destination_city}`);
+        }
+    }, [job]);
+
+    useEffect(() => {
+        if (truck !== null) {
+            toast.info(`New truck selected: ${truck.brand} ${truck.name}`);
+        }
+    }, [truck]);
+
     return (
         // wait for game string before displaying dashboard
         (gameInfo === null) ?
