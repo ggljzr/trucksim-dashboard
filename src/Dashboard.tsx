@@ -77,7 +77,8 @@ export default function Dashboard() {
                     setNavigationTime(decodePayload<Value>(payload).value / 60);
                     break;
                 case 'trucksim/channel/truck/navigation/distance':
-                    setNavigationDistance(decodePayload<Value>(payload).value);
+                    // trucksim/channel/truck/navigation/distance is in meters, we want km
+                    setNavigationDistance(decodePayload<Value>(payload).value / 1000);
                     break;
             }
         });
@@ -105,7 +106,11 @@ export default function Dashboard() {
             <Loading mqttConnected={mqttConnected} />
             :
             <BrowserRouter>
-                <Header mqttConnected={mqttConnected} gameTime={gameTime} />
+                <Header mqttConnected={mqttConnected}
+                    gameTime={gameTime}
+                    navigationTime={navigationTime}
+                    navigationDistance={navigationDistance}
+                />
 
                 <Routes>
                     <Route path="/" element={<Navigate to="/map" />} />
