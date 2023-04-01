@@ -97,6 +97,7 @@ export default function Dashboard() {
     }, []);
 
     useEffect(() => {
+        if (nextRestStop && nextRestStop === 240) toast.warning('Next rest stop in 4 hours');
         if (nextRestStop && nextRestStop === 120) toast.warning('Next rest stop in 2 hours');
     }, [nextRestStop]);
 
