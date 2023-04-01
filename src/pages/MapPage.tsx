@@ -5,13 +5,23 @@ import { DPlacement } from '../types';
 import PlayerMarker from '../components/map/PlayerMarker';
 import Body from '../components/Body';
 
+import { useGameInfo } from '../contexts/GameInfoProvider';
+
 interface Props {
     currentPlacement: DPlacement | null,
     followPosition?: boolean,
 }
 
 export default function MapPage({ currentPlacement, followPosition }: Props) {
-    const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884])
+    const { gameInfo } = useGameInfo();
+
+    // different bounds for ETS2?
+    const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884]);
+
+    var mapUrl = process.env.PUBLIC_URL + '/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png';
+    if (gameInfo !== null && gameInfo.game_id === 'eut2') {
+        mapUrl = process.env.PUBLIC_URL + '/SCS_Map_Tiles/ets2/latest/Tiles/{z}/{x}/{y}.png';
+    }
 
     return (
         <Body>
@@ -34,7 +44,7 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
                     zoomControl={false}>
                     <TileLayer
                         attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
-                        url={process.env.PUBLIC_URL + "/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png"}
+                        url={mapUrl}
                     />
                     <PlayerMarker currentPlacement={currentPlacement} autoCenter={followPosition} />
                 </MapContainer>

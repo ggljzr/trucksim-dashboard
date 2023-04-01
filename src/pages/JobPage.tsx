@@ -6,6 +6,8 @@ import Body from '../components/Body';
 import { minutesToDate, dateShortStr, timedelatStr } from '../utils';
 import { Job } from '../types';
 
+import { useGameInfo } from '../contexts/GameInfoProvider';
+
 interface Props {
     job: Job | null,
     // time to next rest stop in minutes
@@ -14,6 +16,8 @@ interface Props {
 
 export default function JobPage({ job, nextRestStop }: Props) {
     const iconSize = 24;
+
+    const { gameInfo } = useGameInfo();
 
     var deliveryTimeStr = "";
     if (job !== null) {
@@ -53,7 +57,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
                     <tr>
                         <td><CurrencyExchange className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Income</td>
-                        <td>{job?.income}</td>
+                        <td>{job?.income} {gameInfo?.game_id === 'ats' ? '$' : '€'}</td>
                     </tr>
                     <tr>
                         <td><BoxSeamFill className='DashboardTableIcon' size={iconSize} /></td>
