@@ -36,13 +36,13 @@ export default function JobPage({ job, nextRestStop }: Props) {
                 <tbody>
                     <tr>
                         <td><GeoAltFill className='DashboardTableIcon' size={iconSize} /></td>
-                        <td className='DashboardTableHeader'>Destination</td>
-                        <td>{job?.destination_city}</td>
+                        <td className='DashboardTableHeader'>Job route</td>
+                        <td> {job?.source_city} &gt; {job?.destination_city}</td>
                     </tr>
                     <tr>
                         <td><BuildingFill className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Company</td>
-                        <td>{job?.destination_company}</td>
+                        <td>{job?.source_company} &gt; {job?.destination_company}</td>
                     </tr>
                     <tr>
                         <td><Bullseye className='DashboardTableIcon' size={iconSize} /></td>
@@ -57,7 +57,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
                     <tr>
                         <td><CurrencyExchange className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Income</td>
-                        <td>{job?.income} {gameInfo?.game_id === 'ats' ? '$' : '€'}</td>
+                        <td>{job?.income} {gameInfo?.game_id === 'ats' ? '€' : '$'}</td>
                     </tr>
                     <tr>
                         <td><BoxSeamFill className='DashboardTableIcon' size={iconSize} /></td>
@@ -67,7 +67,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
                     <tr>
                         <td><Globe className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Market</td>
-                        <td>{job?.job_market}</td>
+                        <td>{job?.job_market.replace("_", " ")}</td>
                     </tr>
                 </tbody>
             </Table>
