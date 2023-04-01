@@ -6,6 +6,8 @@ import mqtt from "mqtt/dist/mqtt";
 
 import { toast } from 'react-toastify';
 
+import Spinner from 'react-bootstrap/Spinner';
+
 import { useGameInfo } from './contexts/GameInfoProvider';
 
 import Header from './components/Header';
@@ -77,7 +79,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (mqttConnected) toast.success('Connected to MQTT broker');
-        setGame('ats');
+        // setGame('ats');
     }, [mqttConnected]);
 
     useEffect(() => {
@@ -85,17 +87,24 @@ export default function Dashboard() {
     }, [nextRestStop]);
 
     return (
-        <BrowserRouter>
-            <Header mqttConnected={mqttConnected} gameTime={gameTime} />
+        // wait for game string before displaying dashboard
+        (game === null) ?
+            <div>
+                <h1>Loading...</h1>
+                <Spinner animation="border" />
+            </div>
+            :
+            <BrowserRouter>
+                <Header mqttConnected={mqttConnected} gameTime={gameTime} />
 
-            <Routes>
-                <Route path="/" element={<Navigate to="/map" />} />
-                <Route path="/map" element={<MapPage currentPlacement={currentPlacement} followPosition />} />
-                <Route path="/job" element={<JobPage job={job} nextRestStop={nextRestStop} />} />
-                <Route path="/truck" element={<TruckPage truck={truck} />} />
-                <Route path="/settings" element={<SettingsPage />} />
-            </Routes>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/map" />} />
+                    <Route path="/map" element={<MapPage currentPlacement={currentPlacement} followPosition />} />
+                    <Route path="/job" element={<JobPage job={job} nextRestStop={nextRestStop} />} />
+                    <Route path="/truck" element={<TruckPage truck={truck} />} />
+                    <Route path="/settings" element={<SettingsPage />} />
+                </Routes>
 
-        </BrowserRouter>
+            </BrowserRouter>
     );
 }
