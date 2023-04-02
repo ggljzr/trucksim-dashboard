@@ -57,7 +57,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
                     <tr>
                         <td><CurrencyExchange className='DashboardTableIcon' size={iconSize} /></td>
                         <td className='DashboardTableHeader'>Income</td>
-                        <td>{job?.income} {gameInfo?.game_id === 'ats' ? '€' : '$'}</td>
+                        <td>{job?.income} {gameInfo?.game_id === 'ats' ? '$' : '€'}</td>
                     </tr>
                     <tr>
                         <td><BoxSeamFill className='DashboardTableIcon' size={iconSize} /></td>
