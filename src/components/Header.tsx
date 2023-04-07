@@ -19,9 +19,9 @@ interface Props {
 export default function Header({ mqttConnected, gameTime, navigationTime, navigationDistance }: Props) {
     const iconSize = 24;
     const mqttConnectedIcon = mqttConnected ?
-        <Wifi color='green' size={iconSize} />
+        <Wifi color='orange' size={iconSize} />
         :
-        <WifiOff color='red' size={iconSize} />;
+        <WifiOff color='orange' size={iconSize} />;
 
     return (
         <Navbar className="Header">
