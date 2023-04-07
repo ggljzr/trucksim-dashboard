@@ -26,7 +26,7 @@ export default function Header({ mqttConnected, gameTime, navigationTime, naviga
     return (
         <Navbar className="Header">
             <ToastContainer
-                position="top-right"
+                position="top-center"
                 autoClose={3000}
                 hideProgressBar
                 newestOnTop={false}
