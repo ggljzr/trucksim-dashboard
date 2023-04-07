@@ -1,5 +1,9 @@
+import { useState } from 'react';
+
 import { LatLng, LatLngBounds, CRS } from 'leaflet';
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer } from 'react-leaflet';
+
+import Form from 'react-bootstrap/Form';
 
 import { DPlacement } from '../types';
 
@@ -17,11 +21,11 @@ interface Props {
     navigationDistance: number | null,
     // next rest stop in minutes
     nextRestStop: number | null,
-    followPosition?: boolean,
 }
 
-export default function MapPage({ currentPlacement, navigationTime, navigationDistance, nextRestStop, followPosition }: Props) {
+export default function MapPage({ currentPlacement, navigationTime, navigationDistance, nextRestStop }: Props) {
     const { gameInfo } = useGameInfo();
+    const [followPosition, setFollowPosition] = useState(true);
 
     // different bounds for ETS2?
     const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884]);
@@ -30,6 +34,27 @@ export default function MapPage({ currentPlacement, navigationTime, navigationDi
     if (gameInfo !== null && gameInfo.game_id === 'eut2') {
         mapUrl = process.env.PUBLIC_URL + '/SCS_Map_Tiles/ets2/latest/Tiles/{z}/{x}/{y}.png';
     }
+
+    const toggleFollowPosition = () => {
+        setFollowPosition(!followPosition);
+    }
+
+    // widget containing switch for following player position
+    const followPositionControl = (
+        <div className='leaflet-bottom leaflet-left'>
+            <div className="leaflet-control">
+                <Form>
+                    <Form.Check
+                        checked={followPosition}
+                        type="switch"
+                        onChange={toggleFollowPosition}
+                        className='FollowPositionSwitch'
+                    />
+                    Follow truck
+                </Form>
+            </div>
+        </div>
+    )
 
     return (
         <Body>
@@ -56,6 +81,7 @@ export default function MapPage({ currentPlacement, navigationTime, navigationDi
                     />
                     <PlayerMarker currentPlacement={currentPlacement} autoCenter={followPosition} />
                     <InfoWidget navigationTime={navigationTime} navigationDistance={navigationDistance} nextRestStop={nextRestStop} />
+                    {followPositionControl}
                 </MapContainer>
             </div >
         </Body>

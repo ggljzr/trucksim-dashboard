@@ -13,6 +13,9 @@ interface Props {
     nextRestStop: number | null,
 }
 
+/**
+ * Map widget for displaying navigation information.
+ */
 export default function InfoWidget({ navigationTime, navigationDistance, nextRestStop }: Props) {
     const iconSize = 24;
 
