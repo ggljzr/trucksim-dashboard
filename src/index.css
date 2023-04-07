@@ -1,3 +1,8 @@
+.Body {
+  background-color: black;
+  color: white;
+}
+
 .Content {
   padding: 0;
   height: 100%;
@@ -9,8 +14,18 @@
 }
 
 .DashboardTable {
-  background-color: #222;
-  border-color: #999;
+  color: white;
+  border: 2px solid grey;
+}
+
+.DashboardTable>tbody>tr:nth-child(odd)>td,
+.DashboardTable>tbody>tr:nth-child(odd)>th {
+  background-color: black;
+}
+
+.DashboardTable>tbody>tr:nth-child(even)>td,
+.DashboardTable>tbody>tr:nth-child(even)>th {
+  background-color: #303030;
 }
 
 .DashboardTableIcon {
@@ -26,6 +41,13 @@
 .Header {
   width: 100vw;
   height: 5vh;
+  background-color: black;
+  color: white;
+  border: 2px solid gray;
+}
+
+.navbar-text {
+  color: white;
 }
 
 .Map {
@@ -36,37 +58,33 @@
 .Sidebar {
   width: 65px;
   height: 95vh;
+  border-style: hidden solid hidden hidden;
+  border-color: gray;
+  border-width: 2px;
 }
 
 .Sidebar .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #444;
   text-decoration: none;
 }
 
 .Sidebar .nav-item .active {
-  color: #fff;
-  background-color: #375a7f;
+  background-color: orange;
   width: 75px;
 }
 
-.Sidebar a {
-  color: #444;
-}
-
-.Sidebar a:hover {
-  background-color: #eee;
-}
-
-.Sidebar a:visited {
-  color: #444;
+.Toastify__toast {
+  border: 2px solid gray;
+  background-color: black;
+  color: white;
+  border-radius: 0px;
 }
 
 :root {
-  --success: #00bc8c;
-  --warning: #f39c12;
-  --danger: #e74c3c;
+  --success: green;
+  --warning: orange;
+  --danger: red;
 
   --toastify-color-success: var(--success);
   --toastify-color-warning: var(--warning);

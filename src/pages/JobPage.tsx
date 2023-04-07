@@ -32,7 +32,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
     const content = (
         <div>
             <h2>Current job</h2>
-            <Table size='sm' bordered className='DashboardTable'>
+            <Table size='sm' className='DashboardTable' bordered>
                 <tbody>
                     <tr>
                         <td><GeoAltFill className='DashboardTableIcon' size={iconSize} /></td>

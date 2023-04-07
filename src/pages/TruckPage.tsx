@@ -12,11 +12,10 @@ interface Props {
 
 export default function TruckPage({ truck }: Props) {
     const iconSize = 24;
-    // render job as a list if it exists
     const content = (
         <div>
             <h2>{truck?.brand} {truck?.name}</h2>
-            <Table size='sm' bordered className='DashboardTable'>
+            <Table size='sm' className='DashboardTable' bordered>
                 <tbody>
                     <tr>
                         <td><PersonVcardFill className='DashboardTableIcon' size={iconSize} /></td>

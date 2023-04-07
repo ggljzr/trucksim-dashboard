@@ -24,7 +24,7 @@ export default function Header({ mqttConnected, gameTime, navigationTime, naviga
         <WifiOff color='red' size={iconSize} />;
 
     return (
-        <Navbar bg="light" className="Header">
+        <Navbar className="Header">
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
