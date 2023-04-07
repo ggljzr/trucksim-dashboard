@@ -2,6 +2,8 @@
 
 React dashboard build on [trucksim-mqtt-telemetry](https://github.com/ggljzr/trucksim-mqtt-telemetry) plugin.
 
+![trucksim dashboard displaying a map](dashboard.png "Dashboard")
+
 ## Starting developement server
 
 Environment variable ``REACT_APP_MQTT_BROKER_URL`` with full MQTT broker URL (e. g. ``ws://192.168.22.83:8080``) has to be
