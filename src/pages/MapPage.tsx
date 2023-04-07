@@ -41,7 +41,7 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
                     minZoom={3} maxZoom={8}
                     className="Map"
                     maxBounds={bounds}
-                    zoomControl={false}>
+                    zoomControl>
                     <TileLayer
                         attribution="<a href='https://github.com/Unicor-p/SCS_Map_Tiles'>Unicor-p</a>"
                         url={mapUrl}
