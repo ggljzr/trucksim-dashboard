@@ -17,23 +17,26 @@ export default function InfoWidget({ navigationTime, navigationDistance, nextRes
     const iconSize = 24;
 
     return (
-        <div className="InfoWidget leaflet-control leaflet-top leaflet-right">
-            <Table size='sm' className='InfoWidgetTable' bordered>
-                <tbody>
-                    <tr>
-                        <td><GeoAltFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                        <td>{(navigationDistance === null) ? '- - -' : navigationDistance.toFixed(0).toString() + ' km'}</td>
-                    </tr>
-                    <tr>
-                        <td><StopwatchFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                        <td>{(navigationTime === null) ? '- - -' : timeDeltaStr(navigationTime)}</td>
-                    </tr>
-                    <tr>
-                        <td><CupHotFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                        <td>{(nextRestStop === null) ? '-  -  -' : timeDeltaStr(nextRestStop)}</td>
-                    </tr>
-                </tbody>
-            </Table>
+        // the outer div is necessary for elements in the widget to be clickable
+        <div className='leaflet-top leaflet-right'>
+            <div className="InfoWidget leaflet-control">
+                <Table size='sm' className='InfoWidgetTable' bordered>
+                    <tbody>
+                        <tr>
+                            <td><GeoAltFill className='InfoWidgetTableIcon' size={iconSize} /></td>
+                            <td>{(navigationDistance === null) ? '- - -' : navigationDistance.toFixed(0).toString() + ' km'}</td>
+                        </tr>
+                        <tr>
+                            <td><StopwatchFill className='InfoWidgetTableIcon' size={iconSize} /></td>
+                            <td>{(navigationTime === null) ? '- - -' : timeDeltaStr(navigationTime)}</td>
+                        </tr>
+                        <tr>
+                            <td><CupHotFill className='InfoWidgetTableIcon' size={iconSize} /></td>
+                            <td>{(nextRestStop === null) ? '-  -  -' : timeDeltaStr(nextRestStop)}</td>
+                        </tr>
+                    </tbody>
+                </Table>
+            </div>
         </div>
     )
 }
