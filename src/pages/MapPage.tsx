@@ -2,6 +2,8 @@ import { LatLng, LatLngBounds, CRS } from 'leaflet';
 import { MapContainer, TileLayer } from 'react-leaflet'
 
 import { DPlacement } from '../types';
+
+import InfoWidget from '../components/map/InfoWidget';
 import PlayerMarker from '../components/map/PlayerMarker';
 import Body from '../components/Body';
 
@@ -9,10 +11,16 @@ import { useGameInfo } from '../contexts/GameInfoProvider';
 
 interface Props {
     currentPlacement: DPlacement | null,
+    // navigation ETA (in minutes)
+    navigationTime: number | null,
+    // navigation distance (in km)
+    navigationDistance: number | null,
+    // next rest stop in minutes
+    nextRestStop: number | null,
     followPosition?: boolean,
 }
 
-export default function MapPage({ currentPlacement, followPosition }: Props) {
+export default function MapPage({ currentPlacement, navigationTime, navigationDistance, nextRestStop, followPosition }: Props) {
     const { gameInfo } = useGameInfo();
 
     // different bounds for ETS2?
@@ -47,6 +55,7 @@ export default function MapPage({ currentPlacement, followPosition }: Props) {
                         url={mapUrl}
                     />
                     <PlayerMarker currentPlacement={currentPlacement} autoCenter={followPosition} />
+                    <InfoWidget navigationTime={navigationTime} navigationDistance={navigationDistance} nextRestStop={nextRestStop} />
                 </MapContainer>
             </div >
         </Body>

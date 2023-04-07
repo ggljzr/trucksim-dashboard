@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, BoxSeamFill, Globe } from "react-bootstrap-icons";
+import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, BoxSeamFill, Globe, CupHotFill } from "react-bootstrap-icons";
 
 
 import Body from '../components/Body';
@@ -78,7 +78,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
         <Body>
             <div>
                 {job === null ? <h1>No job selected</h1> : content}
-                {nextRestStop === null ? "" : <div>Next rest stop in: {nextRestStopStr}</div>}
+                {nextRestStop === null ? "" : <div><CupHotFill className='DashboardTableIcon' /> Next rest stop in: {nextRestStopStr}</div>}
             </div>
         </Body>
     );

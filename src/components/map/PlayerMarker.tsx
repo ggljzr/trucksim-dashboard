@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 
-import { Icon } from 'leaflet';
 import { useMap, Marker } from 'react-leaflet'
 
 import { DPlacement } from '../../types';
