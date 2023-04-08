@@ -1,7 +1,9 @@
+import { TileInfo } from "./types"
+
 /**
  * TileInfo for ATS copied from https://github.com/Unicor-p/SCS_Map_Tiles.
  */
-export const AtsTileInfo = {
+export const AtsTileInfo: TileInfo = {
     "map": {
         "maxX": 131072,
         "maxY": 131072,
@@ -25,7 +27,7 @@ export const AtsTileInfo = {
 /**
  * TileInfo for ETS2 copied from https://github.com/Unicor-p/SCS_Map_Tiles.
  */
-export const Ets2TileInfo = {
+export const Ets2TileInfo: TileInfo = {
     "map": {
         "maxX": 131072,
         "maxY": 131072,

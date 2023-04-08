@@ -1,5 +1,5 @@
-import { LatLng, Point } from "leaflet";
-import { DPlacement } from "./types";
+import { Point } from "leaflet";
+import { DPlacement, TileInfo } from "./types";
 
 /**
  * Function for decoding MQTT message payloads.
@@ -49,12 +49,11 @@ export function timeDeltaStr(minutes: number): string {
  * 
  * See https://github.com/dariowouters/ts-map/issues/16 for more info.
  */
-export function dPlacementToPoint(xy: DPlacement): Point {
-    // from ATS TileMapInfo.json, hardcoded for now
-    const x1 = -127721.344;
-    const x2 = 20049.6563;
-    const y1 = -72181.5;
-    const y2 = 75589.5;
+export function dPlacementToPoint(xy: DPlacement, tileInfo: TileInfo): Point {
+    const x1 = tileInfo.map.x1;
+    const x2 = tileInfo.map.x2;
+    const y1 = tileInfo.map.y1;
+    const y2 = tileInfo.map.y2;
 
     // these values work, at least for ATS, but not sure why
     // they were found experimentally

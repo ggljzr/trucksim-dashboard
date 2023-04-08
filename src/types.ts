@@ -144,3 +144,27 @@ export interface Job {
     source_company: string,
     source_company_id: string,
 }
+
+/**
+ * Interface for tile info from https://github.com/Unicor-p/SCS_Map_Tiles.
+ */
+export interface TileInfo {
+    map: {
+        maxX: number,
+        maxY: number,
+        x1: number,
+        x2: number,
+        y1: number,
+        y2: number,
+        tileSize: number,
+        minZoom: number,
+        maxZoom: number,
+    },
+    game: {
+        id: string,
+        game: string,
+        name: string,
+        version: string,
+        generatedAt: string,
+    }
+}
