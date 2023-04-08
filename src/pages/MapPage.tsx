@@ -27,8 +27,7 @@ export default function MapPage({ currentPlacement, navigationTime, navigationDi
     const { gameInfo } = useGameInfo();
     const [followPosition, setFollowPosition] = useState(true);
 
-    // different bounds for ETS2?
-    const bounds = new LatLngBounds([-0.14083500491548762, 0.15625], [-255.8694486014055, 255.76590296171884]);
+    const bounds = new LatLngBounds([0, 0], [-256, 256]);
 
     var mapUrl = process.env.PUBLIC_URL + '/SCS_Map_Tiles/ats/latest/Tiles/{z}/{x}/{y}.png';
     if (gameInfo !== null && gameInfo.game_id === 'eut2') {
