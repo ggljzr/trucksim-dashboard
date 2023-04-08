@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
-import { useMap, Marker } from 'react-leaflet'
+import { useMap, Marker } from 'react-leaflet';
 
 import { DPlacement } from '../../types';
-import { dPlacementToPoint } from '../../utils';
+import { useGameInfo } from '../../contexts/GameInfoProvider';
 
 interface Props {
     currentPlacement: DPlacement | null,
@@ -15,7 +15,9 @@ interface Props {
  */
 export default function PlayerMarker({ currentPlacement, autoCenter }: Props) {
     const map = useMap();
-    const position = (currentPlacement === null) ? null : map.unproject(dPlacementToPoint(currentPlacement), map.getMaxZoom());
+    const gameInfo = useGameInfo();
+
+    const position = (currentPlacement === null) ? null : map.unproject(gameInfo.dPlacementToPoint(currentPlacement), map.getMaxZoom());
 
 
     useEffect(() => {

@@ -1,10 +1,22 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { Point } from 'leaflet';
 
-import { GameInfo } from '../types';
+import { GameInfo, DPlacement } from '../types';
+
+import { AtsTileInfo, Ets2TileInfo } from '../tileinfo';
+import { dPlacementToLeafletPoint } from '../utils';
 
 interface IGameInfoContext {
     gameInfo: GameInfo | null,
     setGameInfo: React.Dispatch<React.SetStateAction<GameInfo | null>>
+
+    // context dependent functions
+
+    /**
+     * Function for converting DPlacement to Point for use with Leaflet.
+     * This function uses appropriate tile info based on the game string.
+     */
+    dPlacementToPoint: (placement: DPlacement) => Point,
 }
 
 const GameInfoContext = createContext<IGameInfoContext | undefined>(undefined);
@@ -19,8 +31,21 @@ interface Props {
 export default function GameInfoProvider({ children }: Props) {
     const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);
 
+    const dPlacementToPoint = (placement: DPlacement) => {
+        if (gameInfo === null) {
+            return new Point(0, 0);
+        }
+
+        if (gameInfo.game_id === 'ats')
+            return dPlacementToLeafletPoint(placement, AtsTileInfo);
+        if (gameInfo.game_id === 'eut2')
+            return dPlacementToLeafletPoint(placement, Ets2TileInfo);
+
+        return new Point(0, 0);
+    }
+
     return (
-        <GameInfoContext.Provider value={{ gameInfo, setGameInfo }}>
+        <GameInfoContext.Provider value={{ gameInfo, setGameInfo, dPlacementToPoint }}>
             {children}
         </GameInfoContext.Provider>
     );

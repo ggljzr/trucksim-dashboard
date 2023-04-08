@@ -49,7 +49,7 @@ export function timeDeltaStr(minutes: number): string {
  * 
  * See https://github.com/dariowouters/ts-map/issues/16 for more info.
  */
-export function dPlacementToPoint(xy: DPlacement, tileInfo: TileInfo): Point {
+export function dPlacementToLeafletPoint(xy: DPlacement, tileInfo: TileInfo): Point {
     const x1 = tileInfo.map.x1;
     const x2 = tileInfo.map.x2;
     const y1 = tileInfo.map.y1;
