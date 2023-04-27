@@ -61,7 +61,7 @@ export default function Dashboard() {
                     break;
                 case 'trucksim/channel/game/time':
                     // we recieved game time since the 00:00 of the first day in minutes
-                    // we need to convert it to milliseconds
+                    // we need to convert it to date object
                     const t = minutesToDate(decodePayload<Value>(payload).value);
                     gameInfo.setGameTime(t);
                     break;

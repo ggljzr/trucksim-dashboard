@@ -25,6 +25,12 @@ export default function Header({ mqttConnected, navigationTime, navigationDistan
         :
         <WifiOff color='orange' size={iconSize} />;
 
+    var etaStr = "- - -";
+    if (navigationTime !== null) {
+        etaStr = `${dateShortStr(new Date(gameInfo.gameTime.getTime() + navigationTime * 60000))} (${timeDeltaStr(navigationTime)})`;
+    }
+
+
     return (
         <Navbar className="Header">
             <ToastContainer
@@ -41,7 +47,7 @@ export default function Header({ mqttConnected, navigationTime, navigationDistan
             />
             <Container fluid>
                 <Navbar.Text>{dateShortStr(gameInfo.gameTime)}</Navbar.Text>
-                {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {timeDeltaStr(navigationTime)}</Navbar.Text>}
+                {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {etaStr}</Navbar.Text>}
                 {(navigationDistance === null) ? <></> : <Navbar.Text><GeoAlt /> {navigationDistance.toFixed(0).toString() + ' km'}</Navbar.Text>}
                 <Navbar.Text>{mqttConnectedIcon}</Navbar.Text>
             </Container>
