@@ -4,11 +4,14 @@ import { Point } from 'leaflet';
 import { GameInfo, DPlacement } from '../types';
 
 import { AtsTileInfo, Ets2TileInfo } from '../tileinfo';
-import { dPlacementToLeafletPoint } from '../utils';
+import { dPlacementToLeafletPoint, minutesToDate } from '../utils';
 
 interface IGameInfoContext {
     gameInfo: GameInfo | null,
     setGameInfo: React.Dispatch<React.SetStateAction<GameInfo | null>>
+
+    gameTime: Date,
+    setGameTime: React.Dispatch<React.SetStateAction<Date>>
 
     // context dependent functions
 
@@ -30,6 +33,7 @@ interface Props {
  */
 export default function GameInfoProvider({ children }: Props) {
     const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);
+    const [gameTime, setGameTime] = useState(minutesToDate(0));
 
     const dPlacementToPoint = (placement: DPlacement) => {
         if (gameInfo === null) {
@@ -45,7 +49,11 @@ export default function GameInfoProvider({ children }: Props) {
     }
 
     return (
-        <GameInfoContext.Provider value={{ gameInfo, setGameInfo, dPlacementToPoint }}>
+        <GameInfoContext.Provider value={{
+            gameInfo, setGameInfo,
+            gameTime, setGameTime,
+            dPlacementToPoint
+        }}>
             {children}
         </GameInfoContext.Provider>
     );

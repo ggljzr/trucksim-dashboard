@@ -4,11 +4,11 @@ import { Wifi, WifiOff, GeoAlt, Stopwatch } from "react-bootstrap-icons";
 
 import { ToastContainer } from 'react-toastify';
 
+import { useGameInfo } from '../contexts/GameInfoProvider';
 import { dateShortStr, timeDeltaStr } from '../utils';
 
 interface Props {
     mqttConnected: boolean,
-    gameTime: Date,
     // navigation ETA (in minutes)
     navigationTime: number | null,
     // navigation distance (in km)
@@ -16,7 +16,9 @@ interface Props {
 }
 
 
-export default function Header({ mqttConnected, gameTime, navigationTime, navigationDistance }: Props) {
+export default function Header({ mqttConnected, navigationTime, navigationDistance }: Props) {
+    const gameInfo = useGameInfo();
+
     const iconSize = 24;
     const mqttConnectedIcon = mqttConnected ?
         <Wifi color='orange' size={iconSize} />
@@ -38,7 +40,7 @@ export default function Header({ mqttConnected, gameTime, navigationTime, naviga
                 theme='dark'
             />
             <Container fluid>
-                <Navbar.Text>{dateShortStr(gameTime)}</Navbar.Text>
+                <Navbar.Text>{dateShortStr(gameInfo.gameTime)}</Navbar.Text>
                 {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {timeDeltaStr(navigationTime)}</Navbar.Text>}
                 {(navigationDistance === null) ? <></> : <Navbar.Text><GeoAlt /> {navigationDistance.toFixed(0).toString() + ' km'}</Navbar.Text>}
                 <Navbar.Text>{mqttConnectedIcon}</Navbar.Text>

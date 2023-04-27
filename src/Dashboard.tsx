@@ -27,11 +27,10 @@ import { decodePayload, minutesToDate } from './utils';
  * initialized in App.tsx. This context is necessary to set correct game string (e. g. 'ats' or 'eut2').
  */
 export default function Dashboard() {
-    const { gameInfo, setGameInfo } = useGameInfo();
+    const gameInfo = useGameInfo();
 
     const [mqttConnected, setMqttConnected] = useState(false);
 
-    const [gameTime, setGameTime] = useState(minutesToDate(0));
     // next rest stop in minutes
     const [nextRestStop, setNextRestStop] = useState<number | null>(null);
 
@@ -52,7 +51,7 @@ export default function Dashboard() {
         client.on('message', (topic, payload, packet) => {
             switch (topic) {
                 case "trucksim/gameinfo":
-                    setGameInfo(decodePayload<GameInfo | null>(payload));
+                    gameInfo.setGameInfo(decodePayload<GameInfo | null>(payload));
                     break;
                 case 'trucksim/event/config/job':
                     setJob(decodePayload<Job>(payload));
@@ -64,7 +63,7 @@ export default function Dashboard() {
                     // we recieved game time since the 00:00 of the first day in minutes
                     // we need to convert it to milliseconds
                     const t = minutesToDate(decodePayload<Value>(payload).value);
-                    setGameTime(t);
+                    gameInfo.setGameTime(t);
                     break;
                 case 'trucksim/channel/rest/stop':
                     setNextRestStop(decodePayload<Value>(payload).value);
@@ -115,12 +114,11 @@ export default function Dashboard() {
 
     return (
         // wait for game string before displaying dashboard
-        (gameInfo === null) ?
+        (gameInfo.gameInfo === null) ?
             <Loading mqttConnected={mqttConnected} />
             :
             <BrowserRouter>
                 <Header mqttConnected={mqttConnected}
-                    gameTime={gameTime}
                     navigationTime={navigationTime}
                     navigationDistance={navigationDistance}
                 />
