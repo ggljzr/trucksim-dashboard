@@ -3,7 +3,7 @@ import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, Bo
 
 
 import Body from '../components/Body';
-import { minutesToDate, dateShortStr, timeDeltaStr, timeDeltaMinutes } from '../utils';
+import { gameMinutesToDate, dateShortStr, timeDeltaStr, timeDeltaMinutes } from '../utils';
 import { Job } from '../types';
 
 import { useGameInfo } from '../contexts/GameInfoProvider';
@@ -21,7 +21,7 @@ export default function JobPage({ job, nextRestStop }: Props) {
 
     var deliveryTimeStr = "";
     if (job !== null) {
-        const deliveryTimeDate = minutesToDate(job.delivery_time);
+        const deliveryTimeDate = gameMinutesToDate(job.delivery_time);
         // calculate delivery time delta in minutes by subtracting current game time
         const deliveryTimeDelta = timeDeltaMinutes(deliveryTimeDate, gameTime);
 

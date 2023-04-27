@@ -18,7 +18,7 @@ import SettingsPage from './pages/SettingsPage';
 
 import { Job, Truck, Value, DPlacement, GameInfo } from './types';
 
-import { decodePayload, minutesToDate } from './utils';
+import { decodePayload, gameMinutesToDate } from './utils';
 
 /**
  * Main dashboard component, containing MQTT client and dashboard pages.
@@ -62,7 +62,7 @@ export default function Dashboard() {
                 case 'trucksim/channel/game/time':
                     // we recieved game time since the 00:00 of the first day in minutes
                     // we need to convert it to date object
-                    const t = minutesToDate(decodePayload<Value>(payload).value);
+                    const t = gameMinutesToDate(decodePayload<Value>(payload).value);
                     gameInfo.setGameTime(t);
                     break;
                 case 'trucksim/channel/rest/stop':

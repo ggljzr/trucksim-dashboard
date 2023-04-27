@@ -4,7 +4,7 @@ import { Point } from 'leaflet';
 import { GameInfo, DPlacement } from '../types';
 
 import { AtsTileInfo, Ets2TileInfo } from '../tileinfo';
-import { dPlacementToLeafletPoint, minutesToDate } from '../utils';
+import { dPlacementToLeafletPoint, gameMinutesToDate } from '../utils';
 
 interface IGameInfoContext {
     gameInfo: GameInfo | null,
@@ -33,7 +33,7 @@ interface Props {
  */
 export default function GameInfoProvider({ children }: Props) {
     const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);
-    const [gameTime, setGameTime] = useState(minutesToDate(0));
+    const [gameTime, setGameTime] = useState(gameMinutesToDate(0));
 
     const dPlacementToPoint = (placement: DPlacement) => {
         if (gameInfo === null) {

@@ -18,7 +18,7 @@ export function decodePayload<T>(payload: Buffer): T {
  * function also adds 4 days to the epoch. This is to get the correct weekday,
  * we don't care about correct month or year.
  */
-export function minutesToDate(minutes: number): Date {
+export function gameMinutesToDate(minutes: number): Date {
     // unix epoch is thursday but the game starts on monday
     // so we need to offset the epoch by 4 days
     const epochOffset = 24 * 60 * 60 * 1000 * 4;
