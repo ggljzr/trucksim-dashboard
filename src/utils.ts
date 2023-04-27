@@ -26,6 +26,14 @@ export function minutesToDate(minutes: number): Date {
 }
 
 /**
+ * Function for calculating time delta between two dates in minutes.
+ * To be used with timeDeltaStr function.
+ */
+export function timeDeltaMinutes(date1: Date, date2: Date): number {
+    return Math.floor((date1.getTime() - date2.getTime()) / (1000 * 60));
+}
+
+/**
  * Function for formatting date object to short string ("weekday HH:MM") based on locale string.
  * This function also forces UTC timezone, since game time does not use timezones.
  */

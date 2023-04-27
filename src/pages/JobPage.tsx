@@ -3,7 +3,7 @@ import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, Bo
 
 
 import Body from '../components/Body';
-import { minutesToDate, dateShortStr, timeDeltaStr } from '../utils';
+import { minutesToDate, dateShortStr, timeDeltaStr, timeDeltaMinutes } from '../utils';
 import { Job } from '../types';
 
 import { useGameInfo } from '../contexts/GameInfoProvider';
@@ -17,11 +17,15 @@ interface Props {
 export default function JobPage({ job, nextRestStop }: Props) {
     const iconSize = 24;
 
-    const { gameInfo } = useGameInfo();
+    const { gameInfo, gameTime } = useGameInfo();
 
     var deliveryTimeStr = "";
     if (job !== null) {
-        deliveryTimeStr = dateShortStr(minutesToDate(job.delivery_time));
+        const deliveryTimeDate = minutesToDate(job.delivery_time);
+        // calculate delivery time delta in minutes by subtracting current game time
+        const deliveryTimeDelta = timeDeltaMinutes(deliveryTimeDate, gameTime);
+
+        deliveryTimeStr = dateShortStr(deliveryTimeDate) + " (" + timeDeltaStr(deliveryTimeDelta) + ")";
     }
 
     var nextRestStopStr = "";
