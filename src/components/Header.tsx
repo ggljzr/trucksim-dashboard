@@ -5,7 +5,7 @@ import { Wifi, WifiOff, GeoAlt, Stopwatch } from "react-bootstrap-icons";
 import { ToastContainer } from 'react-toastify';
 
 import { useGameInfo } from '../contexts/GameInfoProvider';
-import { dateShortStr, timeDeltaStr } from '../utils';
+import { dateShortStr, etaStr } from '../utils';
 
 interface Props {
     mqttConnected: boolean,
@@ -25,12 +25,6 @@ export default function Header({ mqttConnected, navigationTime, navigationDistan
         :
         <WifiOff color='orange' size={iconSize} />;
 
-    var etaStr = "- - -";
-    if (navigationTime !== null) {
-        etaStr = `${dateShortStr(new Date(gameInfo.gameTime.getTime() + navigationTime * 60000))} (${timeDeltaStr(navigationTime)})`;
-    }
-
-
     return (
         <Navbar className="Header">
             <ToastContainer
@@ -47,7 +41,7 @@ export default function Header({ mqttConnected, navigationTime, navigationDistan
             />
             <Container fluid>
                 <Navbar.Text>{dateShortStr(gameInfo.gameTime)}</Navbar.Text>
-                {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {etaStr}</Navbar.Text>}
+                {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {etaStr(gameInfo.gameTime, navigationTime)}</Navbar.Text>}
                 {(navigationDistance === null) ? <></> : <Navbar.Text><GeoAlt /> {navigationDistance.toFixed(0).toString() + ' km'}</Navbar.Text>}
                 <Navbar.Text>{mqttConnectedIcon}</Navbar.Text>
             </Container>

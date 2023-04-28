@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { GeoAltFill, StopwatchFill, CupHotFill } from "react-bootstrap-icons";
 
 import { useGameInfo } from '../../contexts/GameInfoProvider';
-import { timeDeltaStr, dateShortStr } from '../../utils';
+import { etaStr, timeDeltaStr } from '../../utils';
 
 interface Props {
     // navigation ETA (in minutes)
@@ -21,11 +21,6 @@ export default function InfoWidget({ navigationTime, navigationDistance, nextRes
     const iconSize = 24;
     const { gameTime } = useGameInfo();
 
-    var etaStr = "- - -";
-    if (navigationTime !== null) {
-        etaStr = `${dateShortStr(new Date(gameTime.getTime() + navigationTime * 60000))} (${timeDeltaStr(navigationTime)})`;
-    }
-
     return (
         // the outer div is necessary for elements in the widget to be clickable
         <div className='leaflet-top leaflet-right'>
@@ -38,7 +33,7 @@ export default function InfoWidget({ navigationTime, navigationDistance, nextRes
                         </tr>
                         <tr>
                             <td><StopwatchFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                            <td>{etaStr}</td>
+                            <td>{etaStr(gameTime, navigationTime)}</td>
                         </tr>
                         <tr>
                             <td><CupHotFill className='InfoWidgetTableIcon' size={iconSize} /></td>

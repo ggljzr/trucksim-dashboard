@@ -51,6 +51,30 @@ export function timeDeltaStr(minutes: number): string {
 }
 
 /**
+ * Calulates ETA date based on current time and navigation time (ETA) in minutes.
+ * E. g. if now is Mon 12:00 and ETA is 30 minutes, then ETA date will be Mon 12:30.
+ */
+export function calculateEta(now: Date, navigationTime: number): Date {
+    // minutes to milliseconds
+    return new Date(now.getTime() + navigationTime * 60000);
+}
+
+/**
+ * Returns ETA string with both date and time delta of expected ETA.
+ * E. g.: "Mon 01:46 AM (01h 40m)".
+ * 
+ * ETA date calculation is based on current time and navigation time (ETA) in minutes.
+ * 
+ * Returns "- - -" if now or navigationTime is null.
+ */
+export function etaStr(now: Date | null, navigationTime: number | null): string {
+    if (now === null || navigationTime === null) return "- - -";
+
+    const etaDate = calculateEta(now, navigationTime);
+    return `${dateShortStr(etaDate)} (${timeDeltaStr(navigationTime)})`
+}
+
+/**
  * Converts DPlacement from game telemetry to Leaflet Point. This point can then be projected to LatLng.
  * 
  * TileMapInfo.json is required for conversion. It should come with the tiles (see tiles folder in 'public').
