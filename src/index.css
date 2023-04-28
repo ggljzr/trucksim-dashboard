@@ -113,6 +113,24 @@ body {
   border: none;
 }
 
+.speedLimitCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: black;
+  position: relative;
+  border: 3px solid orange;
+}
+
+.speedLimitCircle>.speedLimitNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: white;
+}
+
 :root {
   --success: green;
   --warning: orange;

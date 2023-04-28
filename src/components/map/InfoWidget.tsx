@@ -1,3 +1,4 @@
+import { Container, Row, Col } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 
 import { GeoAltFill, StopwatchFill, CupHotFill } from "react-bootstrap-icons";
@@ -27,23 +28,34 @@ export default function InfoWidget({ navigationTime, navigationDistance, nextRes
         // the outer div is necessary for elements in the widget to be clickable
         <div className='leaflet-top leaflet-right'>
             <div className="InfoWidget leaflet-control">
-                <Table size='sm' className='InfoWidgetTable' bordered>
-                    <tbody>
-                        <tr>
-                            <td><GeoAltFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                            <td>{(navigationDistance === null) ? '- - -' : navigationDistance.toFixed(0).toString() + ' km'}</td>
-                        </tr>
-                        <tr>
-                            <td><StopwatchFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                            <td>{etaStr(gameTime, navigationTime)}</td>
-                        </tr>
-                        <tr>
-                            <td><CupHotFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                            <td>{etaStr(gameTime, nextRestStop)}</td>
-                        </tr>
-                    </tbody>
-                </Table>
+                <Container>
+                    <Row>
+                        <Col sm={3}>
+                            <div className='speedLimitCircle'>
+                                <div className='speedLimitNumber'>{speedLimit}</div>
+                            </div>
+                        </Col>
+                        <Col sm={9}>
+                            <Table size='sm' className='InfoWidgetTable' bordered>
+                                <tbody>
+                                    <tr>
+                                        <td><GeoAltFill className='InfoWidgetTableIcon' size={iconSize} /></td>
+                                        <td>{(navigationDistance === null) ? '- - -' : navigationDistance.toFixed(0).toString() + ' km'}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><StopwatchFill className='InfoWidgetTableIcon' size={iconSize} /></td>
+                                        <td>{etaStr(gameTime, navigationTime)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><CupHotFill className='InfoWidgetTableIcon' size={iconSize} /></td>
+                                        <td>{etaStr(gameTime, nextRestStop)}</td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
-        </div>
+        </div >
     )
 }
