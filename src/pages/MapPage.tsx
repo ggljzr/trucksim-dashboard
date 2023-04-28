@@ -23,6 +23,9 @@ interface Props {
     nextRestStop: number | null,
 }
 
+/**
+ * Page displaying navigation map.
+ */
 export default function MapPage({ currentPlacement, navigationTime, navigationDistance, nextRestStop }: Props) {
     const { gameInfo } = useGameInfo();
     const [followPosition, setFollowPosition] = useState(true);

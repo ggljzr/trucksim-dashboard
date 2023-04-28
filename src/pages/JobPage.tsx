@@ -14,6 +14,9 @@ interface Props {
     nextRestStop: number | null,
 }
 
+/**
+ * Page displaying current job info.
+ */
 export default function JobPage({ job, nextRestStop }: Props) {
     const iconSize = 24;
 

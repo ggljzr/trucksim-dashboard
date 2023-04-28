@@ -15,7 +15,9 @@ interface Props {
     navigationDistance: number | null,
 }
 
-
+/**
+ * Dashboard header component, used to display basic game info.
+ */
 export default function Header({ mqttConnected, navigationTime, navigationDistance }: Props) {
     const gameInfo = useGameInfo();
 

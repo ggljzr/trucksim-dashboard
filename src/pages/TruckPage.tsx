@@ -10,6 +10,9 @@ interface Props {
     truck: Truck | null,
 }
 
+/**
+ * Page displaying current truck info.
+ */
 export default function TruckPage({ truck }: Props) {
     const iconSize = 24;
     const content = (

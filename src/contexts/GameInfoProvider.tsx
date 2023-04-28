@@ -29,7 +29,7 @@ interface Props {
 }
 
 /**
- * Context provider for game info e. g. game string ('ats' or 'eut2') or game version.
+ * Context provider for game info e. g. game string ('ats' or 'eut2') game version or current game time.
  */
 export default function GameInfoProvider({ children }: Props) {
     const [gameInfo, setGameInfo] = useState<GameInfo | null>(null);

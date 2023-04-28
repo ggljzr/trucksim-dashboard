@@ -7,6 +7,9 @@ interface Props {
     children?: React.ReactNode;
 }
 
+/**
+ * Page body component, containing sidebar and page content.
+ */
 export default function Body({ children }: Props) {
     return (
         <Stack direction='horizontal' className='Body'>
