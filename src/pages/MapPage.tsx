@@ -72,7 +72,7 @@ export default function MapPage({ currentPlacement, navigationTime, navigationDi
                 <MapContainer
                     crs={CRS.Simple}
                     center={new LatLng(-128, 128)}
-                    zoom={3}
+                    zoom={5}
                     minZoom={3} maxZoom={8}
                     className="Map"
                     maxBounds={bounds}
