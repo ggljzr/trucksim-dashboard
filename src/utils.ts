@@ -51,27 +51,27 @@ export function timeDeltaStr(minutes: number): string {
 }
 
 /**
- * Calulates ETA date based on current time and navigation time (ETA) in minutes.
+ * Calulates ETA date based on current time and ETA in minutes.
  * E. g. if now is Mon 12:00 and ETA is 30 minutes, then ETA date will be Mon 12:30.
  */
-export function calculateEta(now: Date, navigationTime: number): Date {
+export function calculateEta(now: Date, etaMinutes: number): Date {
     // minutes to milliseconds
-    return new Date(now.getTime() + navigationTime * 60000);
+    return new Date(now.getTime() + etaMinutes * 60000);
 }
 
 /**
  * Returns ETA string with both date and time delta of expected ETA.
  * E. g.: "Mon 01:46 AM (01h 40m)".
  * 
- * ETA date calculation is based on current time and navigation time (ETA) in minutes.
+ * ETA date calculation is based on current time and ETA in minutes.
  * 
- * Returns "- - -" if now or navigationTime is null.
+ * Returns "- - -" if now or etaMinutes is null.
  */
-export function etaStr(now: Date | null, navigationTime: number | null): string {
-    if (now === null || navigationTime === null) return "- - -";
+export function etaStr(now: Date | null, etaMinutes: number | null): string {
+    if (now === null || etaMinutes === null) return "- - -";
 
-    const etaDate = calculateEta(now, navigationTime);
-    return `${dateShortStr(etaDate)} (${timeDeltaStr(navigationTime)})`
+    const etaDate = calculateEta(now, etaMinutes);
+    return `${dateShortStr(etaDate)} (${timeDeltaStr(etaMinutes)})`
 }
 
 /**
