@@ -31,11 +31,15 @@ export default function InfoWidget({ navigationTime, navigationDistance, nextRes
                 <Container>
                     <Row>
                         <Col sm={3}>
-                            <div className='speedLimitCircle'>
-                                <div className='speedLimitNumber'>{speedLimit}</div>
-                            </div>
+                            {
+                                (speedLimit === 0) ?
+                                    <></> :
+                                    <div className='speedLimitCircle'>
+                                        <div className='speedLimitNumber'>{speedLimit}</div>
+                                    </div>
+                            }
                         </Col>
-                        <Col sm={9}>
+                        <Col sm="auto">
                             <Table size='sm' className='InfoWidgetTable' bordered>
                                 <tbody>
                                     <tr>
