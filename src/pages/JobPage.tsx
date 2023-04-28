@@ -3,7 +3,7 @@ import { Bullseye, GeoAltFill, BuildingFill, StopwatchFill, CurrencyExchange, Bo
 
 
 import Body from '../components/Body';
-import { gameMinutesToDate, dateShortStr, timeDeltaStr, timeDeltaMinutes } from '../utils';
+import { gameMinutesToDate, dateShortStr, timeDeltaStr, timeDeltaMinutes, etaStr } from '../utils';
 import { Job } from '../types';
 
 import { useGameInfo } from '../contexts/GameInfoProvider';
@@ -26,11 +26,6 @@ export default function JobPage({ job, nextRestStop }: Props) {
         const deliveryTimeDelta = timeDeltaMinutes(deliveryTimeDate, gameTime);
 
         deliveryTimeStr = dateShortStr(deliveryTimeDate) + " (" + timeDeltaStr(deliveryTimeDelta) + ")";
-    }
-
-    var nextRestStopStr = "";
-    if (nextRestStop !== null) {
-        nextRestStopStr = timeDeltaStr(nextRestStop);
     }
 
     const content = (
@@ -82,7 +77,9 @@ export default function JobPage({ job, nextRestStop }: Props) {
         <Body>
             <div>
                 {job === null ? <h1>No job selected</h1> : content}
-                {nextRestStop === null ? "" : <div><CupHotFill className='DashboardTableIcon' /> Next rest stop in: {nextRestStopStr}</div>}
+                {nextRestStop === null ?
+                    <></> :
+                    <div><CupHotFill className='DashboardTableIcon' /> Next rest stop: {etaStr(gameTime, nextRestStop)}</div>}
             </div>
         </Body>
     );

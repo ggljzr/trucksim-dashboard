@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { GeoAltFill, StopwatchFill, CupHotFill } from "react-bootstrap-icons";
 
 import { useGameInfo } from '../../contexts/GameInfoProvider';
-import { etaStr, timeDeltaStr } from '../../utils';
+import { etaStr } from '../../utils';
 
 interface Props {
     // navigation ETA (in minutes)
@@ -37,7 +37,7 @@ export default function InfoWidget({ navigationTime, navigationDistance, nextRes
                         </tr>
                         <tr>
                             <td><CupHotFill className='InfoWidgetTableIcon' size={iconSize} /></td>
-                            <td>{(nextRestStop === null) ? '-  -  -' : timeDeltaStr(nextRestStop)}</td>
+                            <td>{etaStr(gameTime, nextRestStop)}</td>
                         </tr>
                     </tbody>
                 </Table>
