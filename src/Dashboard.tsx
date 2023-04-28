@@ -37,6 +37,7 @@ export default function Dashboard() {
     // ETA in minutes
     const [navigationTime, setNavigationTime] = useState<number | null>(null);
     const [navigationDistance, setNavigationDistance] = useState<number | null>(null);
+    const [speedLimit, setSpeedLimit] = useState<number>(0);
 
     const [job, setJob] = useState<Job | null>(null);
     const [truck, setTruck] = useState<Truck | null>(null);
@@ -79,6 +80,10 @@ export default function Dashboard() {
                     // trucksim/channel/truck/navigation/distance is in meters, we want km
                     setNavigationDistance(decodePayload<Value>(payload).value / 1000);
                     break;
+                case 'trucksim/channel/truck/navigation/speed/limit':
+                    // trucksim/channel/truck/navigation/speed/limit is in m/s we want km/h
+                    setSpeedLimit(decodePayload<Value>(payload).value * 3.6);
+                    break;
             }
         });
 
@@ -91,8 +96,10 @@ export default function Dashboard() {
         client.subscribe('trucksim/channel/rest/stop');
 
         client.subscribe('trucksim/channel/truck/world/placement');
+
         client.subscribe('trucksim/channel/truck/navigation/time');
         client.subscribe('trucksim/channel/truck/navigation/distance');
+        client.subscribe('trucksim/channel/truck/navigation/speed/limit');
     }, []);
 
     useEffect(() => {
@@ -130,6 +137,7 @@ export default function Dashboard() {
                             currentPlacement={currentPlacement}
                             navigationDistance={navigationDistance}
                             navigationTime={navigationTime}
+                            speedLimit={speedLimit}
                             nextRestStop={nextRestStop}
                         />}
                     />

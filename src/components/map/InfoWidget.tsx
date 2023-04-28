@@ -12,12 +12,14 @@ interface Props {
     navigationDistance: number | null,
     // next rest stop in minutes
     nextRestStop: number | null,
+    // speed limit in km/h
+    speedLimit: number,
 }
 
 /**
  * Map widget for displaying navigation information.
  */
-export default function InfoWidget({ navigationTime, navigationDistance, nextRestStop }: Props) {
+export default function InfoWidget({ navigationTime, navigationDistance, nextRestStop, speedLimit }: Props) {
     const iconSize = 24;
     const { gameTime } = useGameInfo();
 

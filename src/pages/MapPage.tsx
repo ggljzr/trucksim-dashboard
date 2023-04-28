@@ -21,12 +21,20 @@ interface Props {
     navigationDistance: number | null,
     // next rest stop in minutes
     nextRestStop: number | null,
+    // speed limit in km/h
+    speedLimit: number,
 }
 
 /**
  * Page displaying navigation map.
  */
-export default function MapPage({ currentPlacement, navigationTime, navigationDistance, nextRestStop }: Props) {
+export default function MapPage({
+    currentPlacement,
+    navigationTime,
+    navigationDistance,
+    nextRestStop,
+    speedLimit }: Props) {
+
     const { gameInfo } = useGameInfo();
     const [followPosition, setFollowPosition] = useState(true);
 
@@ -82,7 +90,12 @@ export default function MapPage({ currentPlacement, navigationTime, navigationDi
                         url={mapUrl}
                     />
                     <PlayerMarker currentPlacement={currentPlacement} autoCenter={followPosition} />
-                    <InfoWidget navigationTime={navigationTime} navigationDistance={navigationDistance} nextRestStop={nextRestStop} />
+                    <InfoWidget
+                        navigationTime={navigationTime}
+                        navigationDistance={navigationDistance}
+                        nextRestStop={nextRestStop}
+                        speedLimit={speedLimit}
+                    />
                     {followPositionControl}
                 </MapContainer>
             </div >
