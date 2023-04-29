@@ -37,7 +37,9 @@ export default function Dashboard() {
     // ETA in minutes
     const [navigationTime, setNavigationTime] = useState<number | null>(null);
     const [navigationDistance, setNavigationDistance] = useState<number | null>(null);
-    const [speedLimit, setSpeedLimit] = useState<number>(0);
+    const [speedLimit, setSpeedLimit] = useState(0);
+
+    const [cruiseControlSpeed, setCrusieControlSpeed] = useState(0);
 
     const [job, setJob] = useState<Job | null>(null);
     const [truck, setTruck] = useState<Truck | null>(null);
@@ -84,6 +86,10 @@ export default function Dashboard() {
                     // trucksim/channel/truck/navigation/speed/limit is in m/s we want km/h
                     setSpeedLimit(decodePayload<Value>(payload).value * 3.6);
                     break;
+                case 'trucksim/channel/truck/cruise_control':
+                    // trucksim/channel/truck/cruise_control is in m/s we want km/h
+                    setCrusieControlSpeed(decodePayload<Value>(payload).value * 3.6);
+                    break;
             }
         });
 
@@ -100,6 +106,8 @@ export default function Dashboard() {
         client.subscribe('trucksim/channel/truck/navigation/time');
         client.subscribe('trucksim/channel/truck/navigation/distance');
         client.subscribe('trucksim/channel/truck/navigation/speed/limit');
+
+        client.subscribe('trucksim/channel/truck/cruise_control');
     }, []);
 
     useEffect(() => {
@@ -125,9 +133,11 @@ export default function Dashboard() {
             <Loading mqttConnected={mqttConnected} />
             :
             <BrowserRouter>
-                <Header mqttConnected={mqttConnected}
+                <Header
+                    mqttConnected={mqttConnected}
                     navigationTime={navigationTime}
                     navigationDistance={navigationDistance}
+                    cruiseControlSpeed={cruiseControlSpeed}
                 />
 
                 <Routes>

@@ -1,6 +1,6 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
-import { Wifi, WifiOff, GeoAlt, Stopwatch } from "react-bootstrap-icons";
+import { Wifi, WifiOff, GeoAlt, Stopwatch, Speedometer } from "react-bootstrap-icons";
 
 import { ToastContainer } from 'react-toastify';
 
@@ -13,12 +13,19 @@ interface Props {
     navigationTime: number | null,
     // navigation distance (in km)
     navigationDistance: number | null,
+    // cruise control speed in km/h
+    cruiseControlSpeed: number,
 }
 
 /**
  * Dashboard header component, used to display basic game info.
  */
-export default function Header({ mqttConnected, navigationTime, navigationDistance }: Props) {
+export default function Header({
+    mqttConnected,
+    navigationTime,
+    navigationDistance,
+    cruiseControlSpeed }: Props) {
+
     const gameInfo = useGameInfo();
 
     const iconSize = 24;
@@ -45,7 +52,8 @@ export default function Header({ mqttConnected, navigationTime, navigationDistan
                 <Navbar.Text>{dateShortStr(gameInfo.gameTime)}</Navbar.Text>
                 {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {etaStr(gameInfo.gameTime, navigationTime)}</Navbar.Text>}
                 {(navigationDistance === null) ? <></> : <Navbar.Text><GeoAlt /> {navigationDistance.toFixed(0).toString() + ' km'}</Navbar.Text>}
-                <Navbar.Text>{mqttConnectedIcon}</Navbar.Text>
+                {(cruiseControlSpeed === 0) ? <></> : <Navbar.Text><Speedometer />{cruiseControlSpeed.toFixed(0).toString() + ' km/h'}</Navbar.Text>}
+                <Navbar.Text className='ml-3'>{mqttConnectedIcon}</Navbar.Text>
             </Container>
         </Navbar>
     );
