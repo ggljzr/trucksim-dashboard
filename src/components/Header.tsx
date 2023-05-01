@@ -52,7 +52,7 @@ export default function Header({
                 <Navbar.Text>{dateShortStr(gameInfo.gameTime)}</Navbar.Text>
                 {(navigationTime === null) ? <></> : <Navbar.Text><Stopwatch /> {etaStr(gameInfo.gameTime, navigationTime)}</Navbar.Text>}
                 {(navigationDistance === null) ? <></> : <Navbar.Text><GeoAlt /> {navigationDistance.toFixed(0).toString() + ' km'}</Navbar.Text>}
-                {(cruiseControlSpeed === 0) ? <></> : <Navbar.Text><Speedometer />{cruiseControlSpeed.toFixed(0).toString() + ' km/h'}</Navbar.Text>}
+                {(cruiseControlSpeed === 0) ? <></> : <Navbar.Text><Speedometer /> {cruiseControlSpeed.toFixed(0).toString() + ' km/h'}</Navbar.Text>}
                 <Navbar.Text className='ml-3'>{mqttConnectedIcon}</Navbar.Text>
             </Container>
         </Navbar>

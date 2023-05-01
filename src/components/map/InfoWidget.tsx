@@ -35,7 +35,7 @@ export default function InfoWidget({ navigationTime, navigationDistance, nextRes
                                 (speedLimit === 0) ?
                                     <></> :
                                     <div className='speedLimitCircle'>
-                                        <div className='speedLimitNumber'>{speedLimit}</div>
+                                        <div className='speedLimitNumber'>{speedLimit.toFixed(0)}</div>
                                     </div>
                             }
                         </Col>
