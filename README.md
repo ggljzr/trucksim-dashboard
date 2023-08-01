@@ -14,3 +14,7 @@ On Windows (Powershell) with NPM:
 ```bash
 > ($env:REACT_APP_MQTT_BROKER_URL = "ws://192.168.22.83:8080") -and (npm start)
 ```
+
+## Map tiles
+
+This repository includes [SCS Map Tiles](https://github.com/Unicor-p/SCS_Map_Tiles) as a submodule.
